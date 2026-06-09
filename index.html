@@ -878,11 +878,21 @@ Sois professionnel, précis et structuré. Tu t'adresses à des notaires qualifi
     const data = await res.json();
     document.getElementById('typing').style.display = 'none';
     btn.disabled = false;
-    addMsg(data.content?.[0]?.text || "Erreur. Veuillez réessayer.", 'ai');
+    
+    // Handle different response formats
+    let replyText = '';
+    if (data.content && data.content[0] && data.content[0].text) {
+      replyText = data.content[0].text;
+    } else if (data.error) {
+      replyText = "Erreur API : " + (data.error.message || JSON.stringify(data.error));
+    } else {
+      replyText = "Réponse inattendue : " + JSON.stringify(data).substring(0, 200);
+    }
+    addMsg(replyText, 'ai');
   } catch(e) {
     document.getElementById('typing').style.display = 'none';
     btn.disabled = false;
-    addMsg("Erreur de connexion. Veuillez réessayer.", 'ai');
+    addMsg("Erreur : " + e.message, 'ai');
   }
 }
 
