@@ -992,105 +992,121 @@ function generatePDF() {
     showToast("Aucun acte à télécharger. Générez d'abord un acte.", 'error');
     return;
   }
-  try {
-    const ref = 'NIA-' + Date.now().toString().slice(-8);
-    const dateStr = new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric'});
-    const formattedContent = formatActeHTML(lastActeContent);
-    
-    const printContent = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Acte Notarial — NotaIA</title><style>'
-      + '@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap");'
-      + '* { margin:0; padding:0; box-sizing:border-box; }'
-      + 'body { font-family:"Libre Baskerville",Georgia,serif; font-size:11pt; color:#1C1C1E; background:#fff; }'
-      + '.page { width:170mm; padding:18mm 20mm; margin:0 auto; }'
-      + '.header { text-align:center; border-bottom:2px solid #8B2A2A; padding-bottom:14px; margin-bottom:20px; }'
-      + '.header-logo { font-size:9pt; color:#8B2A2A; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:4px; }'
-      + '.header-title { font-size:15pt; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }'
-      + '.header-sub { font-size:8.5pt; color:#6C6C70; margin-top:4px; font-style:italic; }'
-      + '.header-meta { display:flex; justify-content:space-between; margin-top:10px; font-size:8pt; color:#6C6C70; font-family:Inter,sans-serif; }'
-      + '.content { line-height:1.85; }'
-      + '.content h1 { font-size:12pt; font-weight:700; text-transform:uppercase; text-align:center; margin:18px 0 8px; }'
-      + '.content h2 { font-size:11.5pt; font-weight:700; text-align:center; margin:14px 0 6px; }'
-      + '.content h3 { font-size:11pt; font-weight:700; text-align:center; margin:12px 0 5px; }'
-      + '.content h4 { font-size:10.5pt; font-weight:700; margin:10px 0 4px; }'
-      + '.content p { margin-bottom:9px; text-align:justify; }'
-      + '.content ul, .content ol { padding-left:18px; margin:6px 0; }'
-      + '.content li { margin-bottom:4px; }'
-      + '.content strong { font-weight:700; }'
-      + '.content em { font-style:italic; }'
-      + '.content table { width:100%; border-collapse:collapse; margin:12px 0; font-size:10pt; }'
-      + '.content th { background:#F0EDE8; padding:6px 9px; border:1px solid #D8D2C8; font-weight:700; text-align:left; }'
-      + '.content td { padding:6px 9px; border:1px solid #D8D2C8; }'
-      + '.article-block { margin:14px 0; }'
-      + '.article-title { font-size:10pt; font-weight:700; text-transform:uppercase; color:#8B2A2A; letter-spacing:0.06em; margin-bottom:5px; text-align:center; padding:3px 0; border-bottom:1px solid #E8D5D5; }'
-      + 'hr { border:none; border-top:0.5px solid #D8D2C8; margin:12px 0; }'
-      + '.signatures { display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; margin-top:45px; padding-top:18px; border-top:1.5px solid #D8D2C8; }'
-      + '.sig-box { text-align:center; }'
-      + '.sig-line { border-top:1px solid #1C1C1E; padding-top:45px; margin-bottom:7px; }'
-      + '.sig-label { font-size:8pt; color:#6C6C70; font-family:Inter,sans-serif; line-height:1.4; }'
-      + '.footer-doc { margin-top:28px; padding-top:8px; border-top:0.5px solid #ddd; text-align:center; font-size:7.5pt; color:#aaa; font-family:Inter,sans-serif; }'
-      + '@media print { body { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }'
-      + '</style></head><body><div class="page">'
-      + '<div class="header">'
-      + '<div class="header-logo">NotaIA — Assistant Notarial Intelligent</div>'
-      + '<div class="header-title">Acte Notarial</div>'
-      + '<div class="header-sub">Document généré par intelligence artificielle — À valider par le notaire instrumentaire</div>'
-      + '<div class="header-meta"><span>Généré le : ' + dateStr + '</span><span>Référence : ' + ref + '</span><span>Cabinet : [NOM DU CABINET]</span></div>'
-      + '</div>'
-      + '<div class="content">' + formattedContent + '</div>'
-      + '<div class="signatures">'
-      + '<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 1<br>Signature &amp; Date</div></div>'
-      + '<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 2<br>Signature &amp; Date</div></div>'
-      + '<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Notaire<br>Cachet &amp; Signature</div></div>'
-      + '</div>'
-      + '<div class="footer-doc">NotaIA — Document à usage professionnel — Confidentiel — Réf. ' + ref + '</div>'
-      + '</div></body></html>';
 
-    const printWin = window.open('', '_blank', 'width=1000,height=800');
-    printWin.document.open();
+  try {
+    // Clean and format the content
+    const lines = lastActeContent.split('\n').filter(l => l.trim());
+    
+    // Build HTML for print
+    const printContent = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Acte Notarial — NotaIA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Libre Baskerville',Georgia,serif; font-size:11pt; color:#1C1C1E; background:#fff; padding:0; }
+  .page { width:210mm; min-height:297mm; padding:20mm 22mm; margin:0 auto; }
+  .header { text-align:center; border-bottom:2px solid #8B2A2A; padding-bottom:16px; margin-bottom:20px; }
+  .header-logo { font-size:10pt; color:#8B2A2A; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:4px; }
+  .header-title { font-size:16pt; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
+  .header-sub { font-size:9pt; color:#6C6C70; margin-top:4px; font-style:italic; }
+  .header-meta { display:flex; justify-content:space-between; margin-top:10px; font-size:9pt; color:#6C6C70; font-family:'Inter',sans-serif; }
+  .content { line-height:1.9; }
+  h1,h2,h3 { text-align:center; margin:16px 0 8px; }
+  h1 { font-size:13pt; text-transform:uppercase; letter-spacing:0.05em; }
+  h2 { font-size:12pt; }
+  h3 { font-size:11pt; color:#8B2A2A; }
+  p { margin-bottom:8px; text-align:justify; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:10pt; }
+  th { background:#F0EDE8; padding:6px 10px; border:1px solid #D8D2C8; font-weight:700; text-align:left; }
+  td { padding:6px 10px; border:1px solid #D8D2C8; }
+  .article { margin:12px 0; }
+  .article-title { font-weight:700; text-transform:uppercase; font-size:10pt; letter-spacing:0.08em; color:#8B2A2A; margin-bottom:4px; }
+  .signatures { display:grid; grid-template-columns:1fr 1fr 1fr; gap:30px; margin-top:40px; padding-top:16px; border-top:1px solid #D8D2C8; }
+  .sig-box { text-align:center; }
+  .sig-line { border-top:1px solid #1C1C1E; margin-bottom:6px; padding-top:40px; }
+  .sig-label { font-size:9pt; color:#6C6C70; font-family:'Inter',sans-serif; }
+  .footer { position:fixed; bottom:10mm; left:22mm; right:22mm; text-align:center; font-size:8pt; color:#aaa; font-family:'Inter',sans-serif; border-top:0.5px solid #ddd; padding-top:6px; }
+  .seal { display:inline-block; width:60px; height:60px; border:2px solid #8B2A2A; border-radius:50%; text-align:center; line-height:56px; font-size:18pt; color:#8B2A2A; margin:20px auto; }
+  blockquote { border-left:3px solid #8B2A2A; padding-left:12px; color:#3A3A3C; margin:8px 0; font-style:italic; }
+  strong, b { font-weight:700; }
+  em, i { font-style:italic; }
+  ul,ol { padding-left:20px; margin:8px 0; }
+  li { margin-bottom:4px; }
+  @media print {
+    body { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+    .no-print { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-logo">NotaIA — Assistant Notarial Intelligent</div>
+    <div class="header-title">Acte Notarial</div>
+    <div class="header-sub">Document généré par intelligence artificielle — À valider par le notaire instrumentaire</div>
+    <div class="header-meta">
+      <span>Généré le : ${new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric'})}</span>
+      <span>Référence : NIA-${Date.now().toString().slice(-8)}</span>
+      <span>Cabinet : [NOM DU CABINET]</span>
+    </div>
+  </div>
+  <div class="content">
+    ${formatActeHTML(lastActeContent)}
+  </div>
+  <div class="signatures">
+    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 1<br>Signature & Date</div></div>
+    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 2<br>Signature & Date</div></div>
+    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Notaire<br>Cachet & Signature</div></div>
+  </div>
+</div>
+<div class="footer">NotaIA — Document à usage professionnel — Confidentiel — Réf. NIA-${Date.now().toString().slice(-8)}</div>
+<div class="pdf-toast" id="pdf-toast"></div>
+
+
+</body>
+</html>`;
+
+    // Open print window
+    const printWin = window.open('', '_blank', 'width=900,height=700');
     printWin.document.write(printContent);
     printWin.document.close();
+    
     setTimeout(() => {
       printWin.focus();
       printWin.print();
-      showToast('✅ Acte complet prêt à sauvegarder en PDF !');
-    }, 1500);
+      showToast('✅ Acte prêt à imprimer / sauvegarder en PDF !');
+    }, 800);
+
   } catch(err) {
     showToast('Erreur lors de la génération. Réessayez.', 'error');
     console.error(err);
   }
 }
+
 function formatActeHTML(text) {
-  if (!text) return '';
-  let t = text
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    .replace(/^(ARTICLE\s+\d+[\w\s—–-]*)/gm, '</p><div class="article-block"><div class="article-title">$1</div><p>')
-    .replace(/^[-*•] (.+)$/gm, '<li>$1</li>')
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    .replace(/^[-_*]{3,}$/gm, '<hr>');
-
-  t = t.replace(/(<li>[\s\S]*?<\/li>)/g, (m) => '<ul>' + m + '</ul>');
+  let html = text
+    // Bold markdown
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    // Headers
+    .replace(/^#{3} (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^#{2} (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^#{1} (.+)$/gm, '<h1>$1</h1>')
+    // Lines starting with ARTICLE
+    .replace(/^(ARTICLE \d+[^\n]*)/gm, '<div class="article"><div class="article-title">$1</div>')
+    // Horizontal rules
+    .replace(/^---+$/gm, '<hr style="border:none;border-top:0.5px solid #D8D2C8;margin:12px 0;">')
+    // Line breaks
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
   
-  const paras = t.split(/
-
-+/);
-  let result = paras.map(p => {
-    p = p.trim();
-    if (!p) return '';
-    if (/^<(h[1-4]|ul|ol|div|hr)/.test(p)) return p;
-    p = p.replace(/
-/g, '<br>');
-    return '<p>' + p + '</p>';
-  }).join('
-');
-  
-  return result;
+  return '<p>' + html + '</p>';
 }
+
 // Hook into addMsg to detect acte generation
 const origAddMsg = addMsg;
 // Override to detect acte
