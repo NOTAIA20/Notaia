@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -866,12 +867,10 @@ COMPÉTENCES :
 Sois professionnel, précis et structuré. Tu t'adresses à des notaires qualifiés.`;
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:2000,
         system: systemPrompt,
         messages: history.slice(-20).map(h => ({role:h.role,content:h.content}))
       })
@@ -890,8 +889,8 @@ Sois professionnel, précis et structuré. Tu t'adresses à des notaires qualifi
 // ── API Key Management ──
 let ANTHROPIC_API_KEY = '';
 
-// API Key — pre-configured
-ANTHROPIC_API_KEY = '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';
+// API Key handled server-side
+ANTHROPIC_API_KEY = '';
 
 // ── Pricing ──
 let billingAnnual = false;
