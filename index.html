@@ -925,12 +925,12 @@ function toggleBilling() {
 
 function selectPlan(plan) {
   const msgs = {
-    free: '✅ Vous utilisez actuellement la version Gratuite. Testez NotaIA et passez en Pro quand vous êtes prêt !',
-    pro: '🚀 Excellent choix ! La version Pro sera disponible au lancement officiel de NotaIA. Inscrivez-vous à la liste d'attente : info@notaia.fr',
-    cabinet: '🏢 Parfait pour votre cabinet ! Contactez-nous pour une démo personnalisée : info@notaia.fr',
-    enterprise: '🏦 Merci de votre intérêt ! Notre équipe vous contactera sous 24h pour un devis personnalisé : enterprise@notaia.fr'
+    free: "Vous utilisez la version Gratuite. Passez en Pro quand vous etes pret !",
+    pro: "Excellent choix ! Version Pro disponible au lancement. Contactez : info@notaia.fr",
+    cabinet: "Parfait ! Contactez-nous pour une demo : info@notaia.fr",
+    enterprise: "Merci ! Notre equipe vous contacte sous 24h : enterprise@notaia.fr"
   };
-  showToast(msgs[plan] || 'Merci !');
+  showToast(msgs[plan] || "Merci !");
 }
 
 function toggleFaq(el) {
