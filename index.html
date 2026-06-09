@@ -1,4 +1,4 @@
-< !DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -207,27 +207,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:
 .dbadge-ok{background:#E8F5E9;color:#2E7D32;}
 .dbadge-warn{background:#FFF3E0;color:#E65100;}
 
-/* API KEY SETUP */
-.api-overlay{position:fixed;inset:0;background:rgba(28,28,30,0.85);backdrop-filter:blur(8px);z-index:9999;display:flex;align-items:center;justify-content:center;}
-.api-overlay.hidden{display:none;}
-.api-box{background:var(--white);border-radius:10px;padding:36px 32px;width:440px;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
-.api-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
-.api-seal{width:40px;height:40px;background:var(--seal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:16px;color:#fff;font-weight:700;}
-.api-title{font-family:var(--font-serif);font-size:20px;color:var(--ink);}
-.api-title span{color:var(--gold);}
-.api-desc{font-size:13px;color:var(--ink3);line-height:1.6;margin-bottom:20px;}
-.api-steps{background:var(--bg);border-radius:var(--r);padding:14px 16px;margin-bottom:20px;display:flex;flex-direction:column;gap:8px;}
-.api-step{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--ink2);}
-.api-step-num{width:20px;height:20px;background:var(--seal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-.api-input-wrap{position:relative;margin-bottom:14px;}
-.api-input{width:100%;font-family:var(--font-sans);font-size:13px;padding:10px 40px 10px 12px;border:1.5px solid var(--bg3);border-radius:var(--r);color:var(--ink);outline:none;transition:border-color 0.15s;background:var(--bg);}
-.api-input:focus{border-color:var(--seal);}
-.api-input-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:14px;color:var(--ink3);}
-.api-btn{width:100%;background:var(--seal);color:#fff;border:none;border-radius:var(--r);padding:11px;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;margin-bottom:10px;}
-.api-btn:hover{background:var(--seal2);}
-.api-note{font-size:11px;color:var(--ink3);text-align:center;line-height:1.5;}
-.api-note a{color:var(--seal);text-decoration:none;}
-.api-error{font-size:12px;color:#C62828;margin-bottom:10px;display:none;}
+/* API KEY — inline */
 
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -910,17 +890,8 @@ Sois professionnel, précis et structuré. Tu t'adresses à des notaires qualifi
 // ── API Key Management ──
 let ANTHROPIC_API_KEY = '';
 
-function initApiKey() {
-  // Key pre-configured
-  ANTHROPIC_API_KEY = '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';
-  document.getElementById('api-overlay').classList.add('hidden');
-}
-
-function resetApiKey() {
-  ANTHROPIC_API_KEY = '';
-}
-
-window.addEventListener('DOMContentLoaded', initApiKey);
+// API Key — pre-configured
+ANTHROPIC_API_KEY = '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';
 
 // ── Pricing ──
 let billingAnnual = false;
@@ -1086,24 +1057,7 @@ function generatePDF() {
 <div class="footer">NotaIA — Document à usage professionnel — Confidentiel — Réf. NIA-${Date.now().toString().slice(-8)}</div>
 <div class="pdf-toast" id="pdf-toast"></div>
 
-<!-- API KEY SETUP OVERLAY -->
-<div class="api-overlay" id="api-overlay">
-  <div class="api-box">
-    <div class="api-logo">
-      <div class="api-seal">NI</div>
-      <div class="api-title">Nota<span>IA</span></div>
-    </div>
-    <p class="api-desc">Pour activer l'assistant IA, entrez votre clé API Anthropic. Elle sera sauvegardée dans votre navigateur.</p>
-    <div class="api-steps">
-      <div class="api-step"><div class="api-step-num">1</div><span>Allez sur <strong>console.anthropic.com</strong></span></div>
-      <div class="api-step"><div class="api-step-num">2</div><span>Cliquez sur <strong>"API Keys"</strong> puis <strong>"Create Key"</strong></span></div>
-      <div class="api-step"><div class="api-step-num">3</div><span>Copiez la clé et collez-la ci-dessous</span></div>
-    </div>
-    <input type="text" class="api-input" id="api-key-input" placeholder="sk-ant-api03-XXXXXXXXXXXX..." style="margin-bottom:14px;" />
-    <button class="api-btn" id="api-activate-btn">Activer NotaIA →</button>
-    <p class="api-note">🔒 Votre clé est stockée localement dans votre navigateur.<br><a href="https://console.anthropic.com" target="_blank">Obtenir une clé gratuite →</a></p>
-  </div>
-</div>
+
 </body>
 </html>`;
 
@@ -1154,23 +1108,6 @@ window._addMsgHook = function(text, role) {
 </script>
 <div class="pdf-toast" id="pdf-toast"></div>
 
-<!-- API KEY SETUP OVERLAY -->
-<div class="api-overlay" id="api-overlay">
-  <div class="api-box">
-    <div class="api-logo">
-      <div class="api-seal">NI</div>
-      <div class="api-title">Nota<span>IA</span></div>
-    </div>
-    <p class="api-desc">Pour activer l'assistant IA, entrez votre clé API Anthropic. Elle sera sauvegardée dans votre navigateur.</p>
-    <div class="api-steps">
-      <div class="api-step"><div class="api-step-num">1</div><span>Allez sur <strong>console.anthropic.com</strong></span></div>
-      <div class="api-step"><div class="api-step-num">2</div><span>Cliquez sur <strong>"API Keys"</strong> puis <strong>"Create Key"</strong></span></div>
-      <div class="api-step"><div class="api-step-num">3</div><span>Copiez la clé et collez-la ci-dessous</span></div>
-    </div>
-    <input type="text" class="api-input" id="api-key-input" placeholder="sk-ant-api03-XXXXXXXXXXXX..." style="margin-bottom:14px;" />
-    <button class="api-btn" id="api-activate-btn">Activer NotaIA →</button>
-    <p class="api-note">🔒 Votre clé est stockée localement dans votre navigateur.<br><a href="https://console.anthropic.com" target="_blank">Obtenir une clé gratuite →</a></p>
-  </div>
-</div>
+
 </body>
 </html>
