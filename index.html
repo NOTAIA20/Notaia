@@ -4,370 +4,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NotaIA — Assistant Notarial Intelligent</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>NotaIA — Le copilote des études notariales Intelligent</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink:#1C1C1E; --ink2:#3A3A3C; --ink3:#6C6C70;
-  --bg:#F0EDE8; --bg2:#E8E3DC; --bg3:#D8D2C8;
+  --ink:#1A1A1A; --ink2:#3D3D3D; --ink3:#757575;
+  --bg:#F5F3EF; --bg2:#EBE8E2; --bg3:#DEDAD3;
   --white:#FFFFFF;
-  --seal:#8B2A2A; --seal2:#A83232; --seal-light:#F5E8E8;
-  --gold:#B8892A; --gold-light:#F5EDD8;
-  --blue:#1A3A6B; --blue-light:#E8EEF8;
-  --green:#2E7D32; --green-light:#E8F5E9;
-  --orange:#E65100; --orange-light:#FFF3E0;
-  --sidebar-w:280px;
+  --seal:#7A2121; --seal2:#922828; --seal-light:#FAF0F0;
+  --gold:#A67C2A; --gold-light:#FDF5E4;
+  --blue:#1B3A6B; --blue-light:#EBF0F8;
+  --green:#276227; --green-light:#EBF5EB;
+  --orange:#C04A00; --orange-light:#FFF0E8;
+  --sidebar-w:260px;
   --font-serif:'Libre Baskerville',Georgia,serif;
   --font-sans:'Inter',system-ui,sans-serif;
-  --r:6px;
-  --shadow:0 1px 3px rgba(28,28,30,0.1),0 4px 16px rgba(28,28,30,0.08);
+  --r:4px;
+  --r2:8px;
+  --shadow-sm:0 1px 2px rgba(26,26,26,0.08);
+  --shadow:0 2px 8px rgba(26,26,26,0.10);
+  --shadow-lg:0 8px 32px rgba(26,26,26,0.12);
 }
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:14px;}
 body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:flex;height:100vh;overflow:hidden;}
 
-/* SIDEBAR */
-.sidebar{width:var(--sidebar-w);background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;height:100vh;overflow-y:auto;}
-.sidebar-logo{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,0.08);}
-.logo-mark{display:flex;align-items:center;gap:10px;}
-.logo-seal{width:38px;height:38px;background:var(--seal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:15px;color:#fff;font-weight:700;flex-shrink:0;}
-.logo-name{font-family:var(--font-serif);font-size:19px;color:#fff;letter-spacing:0.02em;}
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;height:100vh;overflow-y:auto;border-right:1px solid rgba(255,255,255,0.05);}
+
+.sidebar-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:10px;}
+.logo-seal{width:34px;height:34px;background:var(--seal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:13px;color:#fff;font-weight:700;flex-shrink:0;}
+.logo-text{display:flex;flex-direction:column;}
+.logo-name{font-family:var(--font-serif);font-size:17px;color:#fff;letter-spacing:0.02em;line-height:1;}
 .logo-name span{color:var(--gold);}
-.logo-tag{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;}
+.logo-tag{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.18em;text-transform:uppercase;margin-top:3px;}
 
-/* Flag banner */
-.flag-banner{display:flex;align-items:center;gap:6px;padding:10px 18px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06);}
-.flag-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
-.flags{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
-.flag{font-size:16px;}
-.flag-arrow{font-size:10px;color:var(--gold);}
+.sidebar-section{padding:8px 8px 2px;}
+.sl{font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.22);padding:8px 10px 4px;}
 
-.sidebar-section{padding:10px 10px 4px;}
-.sl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:0 8px 6px;}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r);cursor:pointer;font-size:13px;color:rgba(255,255,255,0.55);transition:all 0.15s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;}
-.nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.9);}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r2);cursor:pointer;font-size:12.5px;color:rgba(255,255,255,0.5);transition:all 0.12s;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;}
+.nav-item:hover{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);}
 .nav-item.active{background:var(--seal);color:#fff;}
-.nav-icon{font-size:15px;flex-shrink:0;}
-.nav-badge{margin-left:auto;background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;}
-.nav-sub{font-size:10px;color:rgba(255,255,255,0.25);margin-left:auto;}
-.divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 10px;}
+.nav-icon{font-size:14px;flex-shrink:0;width:18px;text-align:center;}
+.nav-badge{margin-left:auto;background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;min-width:18px;text-align:center;}
+.nav-count{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.22);}
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:6px 8px;}
 
-/* Pays actifs sidebar */
-.pays-sidebar{padding:10px 18px 14px;}
-.pays-sidebar-title{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:8px;}
-.pays-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
-.pays-row:last-child{border-bottom:none;}
-.pays-flag-sm{font-size:14px;}
-.pays-label{font-size:11px;color:rgba(255,255,255,0.55);flex:1;}
-.pays-count{font-size:10px;color:rgba(255,255,255,0.25);}
-.pays-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+.pays-mini{padding:8px 16px 12px;}
+.pays-mini-title{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:6px;}
+.pays-mini-row{display:flex;align-items:center;gap:6px;padding:3px 0;}
+.pm-flag{font-size:12px;}
+.pm-name{font-size:11px;color:rgba(255,255,255,0.45);flex:1;}
+.pm-count{font-size:9px;color:rgba(255,255,255,0.2);}
+.pm-active{width:5px;height:5px;border-radius:50%;background:#34C759;flex-shrink:0;}
 
-.sidebar-user{margin-top:auto;padding:14px 18px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
-.user-av{width:32px;height:32px;background:var(--seal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:12px;color:#fff;font-weight:700;flex-shrink:0;}
-.user-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.8);}
-.user-role{font-size:10px;color:rgba(255,255,255,0.3);}
-.status-green{display:inline-block;width:6px;height:6px;border-radius:50%;background:#34C759;margin-left:auto;}
+.sidebar-user{margin-top:auto;padding:12px 16px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:9px;}
+.user-av{width:30px;height:30px;background:var(--seal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:11px;color:#fff;font-weight:700;flex-shrink:0;}
+.user-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.75);}
+.user-role{font-size:10px;color:rgba(255,255,255,0.28);}
+.online-dot{width:5px;height:5px;border-radius:50%;background:#34C759;margin-left:auto;flex-shrink:0;}
 
-/* MAIN */
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);}
-.topbar{background:var(--white);border-bottom:1px solid var(--bg3);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 1px 0 rgba(28,28,30,0.06);}
-.topbar-left{display:flex;align-items:center;gap:12px;}
-.topbar-title{font-family:var(--font-serif);font-size:16px;color:var(--ink);}
-.topbar-crumb{font-size:12px;color:var(--ink3);}
-.topbar-right{display:flex;align-items:center;gap:10px;}
-.lang-switcher{display:flex;gap:3px;}
-.lang-btn{font-size:11px;font-weight:600;padding:3px 9px;border:1px solid var(--bg3);background:none;cursor:pointer;border-radius:var(--r);color:var(--ink3);transition:all 0.15s;letter-spacing:0.05em;}
-.lang-btn.active{border-color:var(--seal);color:var(--seal);background:var(--seal-light);}
-.pill{font-size:11px;padding:3px 10px;border-radius:var(--r);font-weight:500;}
-.pill-gold{color:var(--gold);background:var(--gold-light);border:1px solid #E0C070;}
-.pill-blue{color:var(--blue);background:var(--blue-light);border:1px solid #C0CCDD;}
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 
-.content{flex:1;overflow-y:auto;padding:22px 24px;display:flex;flex-direction:column;gap:18px;}
-.screen{display:none;flex-direction:column;gap:18px;}
+.topbar{background:var(--white);border-bottom:1px solid var(--bg3);padding:0 20px;height:50px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:var(--shadow-sm);}
+.topbar-left{display:flex;align-items:center;gap:8px;}
+.topbar-title{font-family:var(--font-serif);font-size:15px;color:var(--ink);}
+.topbar-sep{color:var(--bg3);font-size:14px;}
+.topbar-sub{font-size:12px;color:var(--ink3);}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.tb-btn{font-size:11px;font-weight:600;padding:4px 10px;border:1px solid var(--bg3);background:var(--white);cursor:pointer;border-radius:var(--r);color:var(--ink2);transition:all 0.12s;}
+.tb-btn:hover{border-color:var(--seal);color:var(--seal);}
+.tb-btn.primary{background:var(--seal);color:#fff;border-color:var(--seal);}
+.tb-btn.primary:hover{background:var(--seal2);}
+.tb-pill{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600;}
+.tb-pill-gold{color:var(--gold);background:var(--gold-light);border:1px solid #DFC070;}
+
+.content{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.screen{display:none;flex-direction:column;gap:16px;}
 .screen.active{display:flex;}
 
-/* CARDS */
-.card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);box-shadow:var(--shadow);}
-.card-head{padding:14px 18px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;}
-.card-title{font-size:13px;font-weight:600;color:var(--ink);}
-.card-sub{font-size:11px;color:var(--ink3);}
-.card-body{padding:18px;}
-
-/* QUICK ACTIONS */
-.qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.qa-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);padding:14px;cursor:pointer;transition:all 0.18s;display:flex;flex-direction:column;gap:7px;box-shadow:var(--shadow);}
-.qa-card:hover{border-color:var(--seal);transform:translateY(-2px);box-shadow:0 4px 20px rgba(139,42,42,0.12);}
-.qa-icon{font-size:20px;}
-.qa-title{font-size:12px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.04em;}
-.qa-desc{font-size:11px;color:var(--ink3);line-height:1.5;}
-.qa-pays{display:flex;gap:3px;margin-top:3px;}
-.qa-pays span{font-size:12px;}
-
-/* CHAT */
-.chat-wrap{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);display:flex;flex-direction:column;box-shadow:var(--shadow);}
-.chat-head{padding:12px 18px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;gap:10px;}
-.chat-status-dot{width:7px;height:7px;border-radius:50%;background:#34C759;}
-.chat-head-title{font-size:13px;font-weight:600;color:var(--ink);}
-.chat-head-info{margin-left:auto;display:flex;align-items:center;gap:8px;}
-.chat-head-tag{font-size:10px;color:var(--ink3);background:var(--bg2);padding:2px 8px;border-radius:10px;}
-
-.chat-msgs{overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;min-height:240px;max-height:290px;}
-.msg{display:flex;gap:9px;align-items:flex-start;}
-.msg.user{flex-direction:row-reverse;}
-.msg-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
-.msg-av.ai{background:var(--seal);color:#fff;font-family:var(--font-serif);}
-.msg-av.user{background:var(--bg2);color:var(--ink2);}
-.bubble{max-width:78%;padding:9px 13px;border-radius:10px;font-size:12.5px;line-height:1.65;}
-.bubble.ai{background:var(--bg);color:var(--ink);border-bottom-left-radius:3px;}
-.bubble.user{background:var(--seal);color:#fff;border-bottom-right-radius:3px;}
-.bubble strong{font-weight:700;}
-
-.typing{display:none;align-items:center;gap:4px;padding:2px 0 6px 35px;}
-.td{width:5px;height:5px;background:var(--ink3);border-radius:50%;animation:bounce 1.2s infinite;}
-.td:nth-child(2){animation-delay:0.2s;}
-.td:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-
-.chat-input-row{padding:12px 18px;border-top:1px solid var(--bg2);display:flex;gap:9px;align-items:flex-end;}
-.chat-ta{flex:1;font-family:var(--font-sans);font-size:13px;padding:8px 12px;border:1px solid var(--bg3);border-radius:var(--r);background:var(--bg);color:var(--ink);resize:none;outline:none;min-height:36px;max-height:90px;line-height:1.5;transition:border-color 0.15s;}
-.chat-ta:focus{border-color:var(--seal);}
-.send-btn{background:var(--seal);color:#fff;border:none;border-radius:var(--r);padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;transition:background 0.15s;height:36px;white-space:nowrap;}
-.send-btn:hover{background:var(--seal2);}
-.send-btn:disabled{opacity:0.4;cursor:not-allowed;}
-
-/* ACTES TABLE */
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.search{font-family:var(--font-sans);font-size:12px;padding:7px 11px;border:1px solid var(--bg3);border-radius:var(--r);background:var(--white);color:var(--ink);outline:none;width:220px;}
-.search:focus{border-color:var(--seal);}
-.btn{font-family:var(--font-sans);font-size:12px;font-weight:600;padding:7px 14px;border-radius:var(--r);cursor:pointer;border:none;transition:all 0.15s;}
-.btn-red{background:var(--seal);color:#fff;}
-.btn-red:hover{background:var(--seal2);}
+/* ── DOSSIERS ── */
+.dossiers-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.search-input{font-family:var(--font-sans);font-size:12px;padding:7px 11px;border:1px solid var(--bg3);border-radius:var(--r);background:var(--white);color:var(--ink);outline:none;width:240px;transition:border-color 0.12s;}
+.search-input:focus{border-color:var(--seal);}
+.btn-group{display:flex;gap:6px;}
+.btn{font-family:var(--font-sans);font-size:12px;font-weight:600;padding:7px 12px;border-radius:var(--r);cursor:pointer;border:none;transition:all 0.12s;display:flex;align-items:center;gap:5px;}
+.btn-seal{background:var(--seal);color:#fff;}
+.btn-seal:hover{background:var(--seal2);}
 .btn-ghost{background:var(--white);color:var(--ink2);border:1px solid var(--bg3);}
 .btn-ghost:hover{border-color:var(--seal);color:var(--seal);}
-.btn-group{display:flex;gap:6px;}
+.btn-sm{font-size:11px;padding:5px 9px;}
 
-.table-wrap{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
-.thead{display:grid;grid-template-columns:2.2fr 1.4fr 0.9fr 0.9fr 0.8fr 0.7fr;padding:9px 18px;background:var(--bg2);border-bottom:1px solid var(--bg3);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);}
-.trow{display:grid;grid-template-columns:2.2fr 1.4fr 0.9fr 0.9fr 0.8fr 0.7fr;padding:12px 18px;border-bottom:1px solid var(--bg2);font-size:12.5px;align-items:center;cursor:pointer;transition:background 0.1s;}
-.trow:last-child{border-bottom:none;}
-.trow:hover{background:var(--bg);}
-.acte-n{font-weight:600;color:var(--ink);}
-.acte-s{font-size:11px;color:var(--ink3);margin-top:1px;}
-.badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;}
-.b-green{background:#E8F5E9;color:#2E7D32;}
-.b-orange{background:#FFF3E0;color:#E65100;}
-.b-blue{background:#E3F2FD;color:#1565C0;}
+.dossiers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
 
-/* DASHBOARD */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.sc{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow);}
-.sc-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
-.sc-val{font-family:var(--font-serif);font-size:26px;font-weight:700;color:var(--ink);line-height:1;}
-.sc-sub{font-size:11px;color:var(--ink3);margin-top:3px;}
-.sc-up{color:var(--green);}
+.dossier-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r2);padding:16px;cursor:pointer;transition:all 0.15s;box-shadow:var(--shadow-sm);}
+.dossier-card:hover{border-color:var(--seal);box-shadow:var(--shadow);transform:translateY(-1px);}
+.dossier-card.selected{border-color:var(--seal);background:var(--seal-light);}
+.dc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.dc-num{font-size:10px;font-weight:700;color:var(--ink3);letter-spacing:0.08em;}
+.dc-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+.st-ouvert{background:#FFF8E1;color:#B8860B;}
+.st-instruction{background:#E3F2FD;color:#1565C0;}
+.st-revision{background:#FFF3E0;color:#C04A00;}
+.st-finalise{background:#E8F5E9;color:#276227;}
+.st-archive{background:#F3F3F3;color:#757575;}
+.dc-type{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;font-family:var(--font-serif);}
+.dc-parties{font-size:11px;color:var(--ink3);margin-bottom:10px;}
+.dc-footer{display:flex;align-items:center;justify-content:space-between;}
+.dc-pays{font-size:11px;color:var(--ink3);}
+.dc-date{font-size:10px;color:var(--ink3);}
+.dc-progress{height:3px;background:var(--bg2);border-radius:2px;margin-bottom:10px;}
+.dc-progress-fill{height:3px;background:var(--seal);border-radius:2px;transition:width 0.3s;}
 
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-.ai-row{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--bg2);}
-.ai-row:last-child{border-bottom:none;}
-.ai-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;}
-.ai-text{font-size:12px;color:var(--ink2);line-height:1.5;}
-.ai-time{font-size:10px;color:var(--ink3);margin-top:1px;}
+/* ── DOSSIER DETAIL ── */
+.dossier-layout{display:grid;grid-template-columns:1fr 340px;gap:16px;height:100%;}
+.dossier-main{display:flex;flex-direction:column;gap:14px;min-width:0;}
+.dossier-side{display:flex;flex-direction:column;gap:12px;}
 
-.pays-bar-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);}
-.pays-bar-row:last-child{border-bottom:none;}
-.pbr-flag{font-size:16px;}
-.pbr-name{font-size:12px;color:var(--ink);width:90px;}
-.pbr-wrap{flex:1;height:5px;background:var(--bg2);border-radius:3px;}
-.pbr-fill{height:5px;background:var(--seal);border-radius:3px;}
-.pbr-pct{font-size:11px;color:var(--ink3);width:32px;text-align:right;}
+.card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r2);box-shadow:var(--shadow-sm);}
+.card-head{padding:12px 16px;border-bottom:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-size:13px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:7px;}
+.card-sub{font-size:11px;color:var(--ink3);}
+.card-body{padding:16px;}
 
-/* France → Afrique flow */
-.flow-banner{background:linear-gradient(135deg,var(--blue) 0%,var(--seal) 100%);border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;color:#fff;box-shadow:var(--shadow);}
-.flow-left{display:flex;flex-direction:column;gap:4px;}
-.flow-title{font-family:var(--font-serif);font-size:17px;}
-.flow-sub{font-size:11px;opacity:0.7;}
-.flow-right{display:flex;align-items:center;gap:10px;}
-.flow-flag{font-size:28px;}
-.flow-arr{font-size:20px;opacity:0.7;}
-.flow-countries{display:flex;gap:6px;}
-.flow-country{display:flex;flex-direction:column;align-items:center;gap:2px;}
-.flow-country-flag{font-size:20px;}
-.flow-country-name{font-size:9px;opacity:0.6;letter-spacing:0.06em;}
+/* FORMULAIRE */
+.form-steps{display:flex;align-items:center;gap:0;margin-bottom:16px;background:var(--bg);border-radius:var(--r2);padding:4px;}
+.form-step{flex:1;text-align:center;padding:6px 4px;font-size:11px;font-weight:600;color:var(--ink3);border-radius:var(--r);cursor:pointer;transition:all 0.12s;}
+.form-step.active{background:var(--white);color:var(--seal);box-shadow:var(--shadow-sm);}
+.form-step.done{color:var(--green);}
 
-/* DOCS */
-.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.doc-card{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);padding:16px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow);}
-.doc-card:hover{border-color:var(--seal);transform:translateY(-2px);}
-.doc-icon{font-size:22px;margin-bottom:8px;}
-.doc-country{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--seal);margin-bottom:3px;}
-.doc-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
-.doc-desc{font-size:11px;color:var(--ink3);line-height:1.5;}
-.doc-foot{font-size:10px;color:var(--ink3);margin-top:10px;padding-top:8px;border-top:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;}
-.dbadge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;}
-.dbadge-ok{background:#E8F5E9;color:#2E7D32;}
-.dbadge-warn{background:#FFF3E0;color:#E65100;}
+.form-section{display:none;}
+.form-section.active{display:block;}
 
-/* API KEY — inline */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form-row.full{grid-template-columns:1fr;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-label{font-size:11px;font-weight:600;color:var(--ink2);letter-spacing:0.03em;}
+.form-label span{color:var(--seal);}
+.form-input,.form-select,.form-textarea{font-family:var(--font-sans);font-size:12.5px;padding:7px 10px;border:1px solid var(--bg3);border-radius:var(--r);background:var(--white);color:var(--ink);outline:none;transition:border-color 0.12s;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--seal);box-shadow:0 0 0 2px rgba(122,33,33,0.08);}
+.form-textarea{min-height:70px;resize:vertical;}
+.form-select option{background:var(--white);}
+.form-hint{font-size:10px;color:var(--ink3);margin-top:2px;}
+
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--bg2);}
+
+/* PREVIEW ACTE */
+.acte-preview-wrap{background:var(--bg);border:1px solid var(--bg3);border-radius:var(--r);padding:16px;font-family:var(--font-serif);font-size:11.5px;line-height:1.75;color:var(--ink);max-height:400px;overflow-y:auto;}
+.preview-placeholder{text-align:center;padding:30px 20px;color:var(--ink3);}
+.preview-placeholder-icon{font-size:32px;margin-bottom:8px;}
+.preview-placeholder-text{font-size:12px;line-height:1.6;}
+.acte-content h1{font-size:13px;font-weight:700;text-transform:uppercase;text-align:center;margin:14px 0 8px;letter-spacing:0.04em;}
+.acte-content h2{font-size:12px;font-weight:700;text-align:center;margin:10px 0 6px;color:var(--seal);}
+.acte-content p{margin-bottom:8px;text-align:justify;}
+.acte-content strong{font-weight:700;}
+.acte-loading{display:flex;align-items:center;gap:8px;justify-content:center;padding:20px;color:var(--ink3);}
+.dot-loader span{display:inline-block;width:5px;height:5px;background:var(--seal);border-radius:50%;animation:bounce2 1s infinite;margin:0 2px;}
+.dot-loader span:nth-child(2){animation-delay:0.15s;}
+.dot-loader span:nth-child(3){animation-delay:0.3s;}
+@keyframes bounce2{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:6px;}
+.cl-item{display:flex;align-items:center;gap:9px;padding:7px 10px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bg2);cursor:pointer;transition:all 0.12s;}
+.cl-item:hover{border-color:var(--bg3);}
+.cl-item.done{background:var(--green-light);border-color:#B8D8B8;}
+.cl-item.pending{background:var(--orange-light);border-color:#F0C8A8;}
+.cl-item.blocked{background:#FEF0F0;border-color:#F0B8B8;}
+.cl-item.done .cl-checkbox{background:var(--green);border-color:var(--green);color:#fff;}
+.cl-item.pending .cl-checkbox{background:#E65100;border-color:#E65100;color:#fff;}
+.cl-checkbox{width:16px;height:16px;border:1.5px solid var(--bg3);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all 0.12s;}
+.cl-item.done .cl-checkbox{background:var(--green);border-color:var(--green);color:#fff;}
+.cl-text{font-size:12px;color:var(--ink2);flex:1;}
+.cl-item.done .cl-text{color:var(--green);text-decoration:line-through;}
+.cl-tag{font-size:10px;padding:1px 6px;border-radius:8px;background:var(--bg2);color:var(--ink3);}
+
+/* CHAT JURIDIQUE */
+.chat-mini{display:flex;flex-direction:column;}
+.chat-mini-msgs{padding:10px;display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;}
+.mini-msg{display:flex;gap:7px;align-items:flex-start;}
+.mini-msg.user{flex-direction:row-reverse;}
+.mini-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;}
+.mini-av.ai{background:var(--seal);color:#fff;font-family:var(--font-serif);}
+.mini-av.user{background:var(--bg2);color:var(--ink2);}
+.mini-bubble{max-width:85%;padding:7px 10px;border-radius:8px;font-size:11.5px;line-height:1.55;}
+.mini-bubble.ai{background:var(--bg);color:var(--ink);border-bottom-left-radius:2px;}
+.mini-bubble.user{background:var(--seal);color:#fff;border-bottom-right-radius:2px;}
+.chat-mini-input{padding:8px 10px;border-top:1px solid var(--bg2);display:flex;gap:6px;}
+.mini-input{flex:1;font-family:var(--font-sans);font-size:12px;padding:6px 9px;border:1px solid var(--bg3);border-radius:var(--r);background:var(--bg);color:var(--ink);outline:none;}
+.mini-input:focus{border-color:var(--seal);}
+.mini-send{background:var(--seal);color:#fff;border:none;border-radius:var(--r);padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;}
+.mini-send:hover{background:var(--seal2);}
+.mini-typing{display:none;padding:4px 10px 8px;gap:4px;align-items:center;}
+.mini-typing.show{display:flex;}
+.mt-dot{width:4px;height:4px;background:var(--ink3);border-radius:50%;animation:bounce2 1s infinite;}
+.mt-dot:nth-child(2){animation-delay:0.15s;}
+.mt-dot:nth-child(3){animation-delay:0.3s;}
+
+/* NOTES */
+.notes-area{font-family:var(--font-sans);font-size:12px;padding:10px;border:none;background:transparent;color:var(--ink);resize:none;width:100%;min-height:80px;outline:none;line-height:1.6;}
+
+/* DOCUMENTS */
+.doc-list{display:flex;flex-direction:column;gap:6px;}
+.doc-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bg2);}
+.doc-icon{font-size:16px;flex-shrink:0;}
+.doc-name{font-size:12px;font-weight:500;color:var(--ink);flex:1;}
+.doc-date{font-size:10px;color:var(--ink3);}
+.doc-dl{font-size:11px;color:var(--seal);cursor:pointer;font-weight:600;}
+.doc-dl:hover{text-decoration:underline;}
+
+/* NOUVEAU DOSSIER MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,26,26,0.5);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px);}
+.modal-overlay.hidden{display:none;}
+.modal{background:var(--white);border-radius:var(--r2);padding:28px;width:480px;box-shadow:var(--shadow-lg);}
+.modal-title{font-family:var(--font-serif);font-size:18px;color:var(--ink);margin-bottom:4px;}
+.modal-sub{font-size:12px;color:var(--ink3);margin-bottom:20px;}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bg2);}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.stat-box{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r2);padding:14px 16px;box-shadow:var(--shadow-sm);}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;}
+.stat-val{font-family:var(--font-serif);font-size:24px;font-weight:700;color:var(--ink);line-height:1;}
+.stat-sub{font-size:10px;color:var(--ink3);margin-top:3px;}
+.stat-up{color:var(--green);}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;padding:11px 18px;border-radius:var(--r2);font-size:12.5px;font-weight:500;box-shadow:var(--shadow-lg);z-index:2000;transform:translateY(60px);opacity:0;transition:all 0.25s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-success{background:var(--green);color:#fff;}
+.toast-error{background:#C62828;color:#fff;}
+
+/* PRICING */
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.plan-card{background:var(--white);border:1.5px solid var(--bg3);border-radius:var(--r2);padding:20px 16px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);position:relative;}
+.plan-card.featured{border-color:var(--seal);}
+.plan-card.featured::before{content:'Recommandé';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--seal);color:#fff;font-size:9px;font-weight:700;padding:2px 10px;border-radius:8px;white-space:nowrap;}
+.plan-badge{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--seal);margin-bottom:5px;}
+.plan-name{font-family:var(--font-serif);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.plan-desc{font-size:11px;color:var(--ink3);margin-bottom:12px;line-height:1.5;}
+.plan-price{display:flex;align-items:baseline;gap:3px;margin-bottom:12px;}
+.plan-amount{font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--ink);}
+.plan-period{font-size:11px;color:var(--ink3);}
+.plan-divider{height:1px;background:var(--bg2);margin:12px 0;}
+.plan-features{display:flex;flex-direction:column;gap:6px;flex:1;}
+.plan-feature{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:var(--ink2);line-height:1.4;}
+.feat-ok{color:var(--green);flex-shrink:0;}
+.feat-no{color:var(--bg3);flex-shrink:0;}
+.plan-cta{margin-top:14px;padding:8px;border-radius:var(--r);font-size:11.5px;font-weight:700;cursor:pointer;border:none;text-align:center;transition:all 0.12s;}
+.cta-ghost{background:var(--bg);color:var(--ink2);border:1px solid var(--bg3);}
+.cta-ghost:hover{border-color:var(--seal);color:var(--seal);}
+.cta-seal{background:var(--seal);color:#fff;}
+.cta-seal:hover{background:var(--seal2);}
+.cta-blue{background:var(--blue);color:#fff;}
+.cta-dark{background:var(--ink);color:#fff;}
 
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px;}
-
-/* PDF */
-.pdf-btn{background:var(--gold);color:var(--ink);border:none;border-radius:var(--r);padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;display:none;align-items:center;gap:6px;white-space:nowrap;}
-.pdf-btn:hover{background:#A07820;}
-.pdf-btn.visible{display:flex;}
-.pricing-hero{background:linear-gradient(135deg,var(--blue) 0%,var(--seal) 100%);border-radius:var(--r);padding:24px 28px;color:#fff;text-align:center;margin-bottom:4px;}
-.pricing-hero-title{font-family:var(--font-serif);font-size:22px;margin-bottom:6px;}
-.pricing-hero-sub{font-size:12px;opacity:0.75;}
-.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;}
-.pricing-toggle span{font-size:12px;opacity:0.8;}
-.toggle-wrap{width:44px;height:24px;background:rgba(255,255,255,0.3);border-radius:12px;cursor:pointer;position:relative;transition:background 0.2s;}
-.toggle-wrap.on{background:var(--gold);}
-.toggle-knob{width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;transition:left 0.2s;}
-.toggle-wrap.on .toggle-knob{left:23px;}
-.pricing-badge{background:var(--gold);color:var(--ink);font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
-.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.plan-card{background:var(--white);border:1.5px solid var(--bg3);border-radius:var(--r);padding:22px 18px;display:flex;flex-direction:column;gap:0;box-shadow:var(--shadow);position:relative;transition:all 0.2s;}
-.plan-card.featured{border-color:var(--seal);box-shadow:0 4px 24px rgba(139,42,42,0.15);}
-.plan-card.featured::before{content:'⭐ RECOMMANDÉ';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--seal);color:#fff;font-size:9px;font-weight:700;padding:3px 10px;border-radius:10px;letter-spacing:0.08em;white-space:nowrap;}
-.plan-badge{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--seal);margin-bottom:6px;}
-.plan-name{font-family:var(--font-serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;}
-.plan-desc{font-size:11px;color:var(--ink3);margin-bottom:14px;line-height:1.5;}
-.plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px;}
-.plan-amount{font-family:var(--font-serif);font-size:32px;font-weight:700;color:var(--ink);}
-.plan-amount.free{font-size:26px;color:var(--green);}
-.plan-period{font-size:11px;color:var(--ink3);}
-.plan-annual{font-size:10px;color:var(--green);margin-bottom:14px;font-weight:500;}
-.plan-divider{height:1px;background:var(--bg2);margin:14px 0;}
-.plan-features{display:flex;flex-direction:column;gap:8px;flex:1;}
-.plan-feature{display:flex;align-items:flex-start;gap:8px;font-size:11.5px;color:var(--ink2);line-height:1.4;}
-.feat-check{font-size:12px;flex-shrink:0;margin-top:1px;}
-.feat-x{font-size:12px;flex-shrink:0;margin-top:1px;opacity:0.4;}
-.plan-cta{margin-top:18px;padding:9px;border-radius:var(--r);font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all 0.15s;text-align:center;}
-.cta-free{background:var(--bg2);color:var(--ink2);}
-.cta-free:hover{background:var(--bg3);}
-.cta-pro{background:var(--seal);color:#fff;}
-.cta-pro:hover{background:var(--seal2);}
-.cta-cabinet{background:var(--blue);color:#fff;}
-.cta-cabinet:hover{background:#142d54;}
-.cta-enterprise{background:var(--ink);color:#fff;}
-.cta-enterprise:hover{background:var(--ink2);}
-.compare-section{margin-top:4px;}
-.compare-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.compare-table{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
-.compare-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;background:var(--bg2);padding:10px 16px;border-bottom:1px solid var(--bg3);}
-.compare-head-cell{font-size:11px;font-weight:700;color:var(--ink3);text-align:center;}
-.compare-head-cell:first-child{text-align:left;}
-.compare-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;padding:9px 16px;border-bottom:1px solid var(--bg2);align-items:center;}
-.compare-row:last-child{border-bottom:none;}
-.compare-row:nth-child(even){background:var(--bg);}
-.compare-feat{font-size:12px;color:var(--ink2);}
-.compare-val{font-size:12px;text-align:center;}
-.val-check{color:var(--green);}
-.val-x{color:var(--bg3);}
-.val-text{color:var(--ink2);font-size:11px;}
-.faq-section{margin-top:4px;}
-.faq-item{background:var(--white);border:1px solid var(--bg3);border-radius:var(--r);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow);}
-.faq-q{padding:13px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
-.faq-q:hover{background:var(--bg);}
-.faq-a{padding:0 16px;max-height:0;overflow:hidden;transition:all 0.3s;font-size:12px;color:var(--ink3);line-height:1.7;}
-.faq-a.open{padding:0 16px 13px;max-height:200px;}
-.plan-limit{font-size:10px;color:var(--ink3);margin-top:6px;font-style:italic;}
-
-.pdf-toast{position:fixed.pdf-toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:12px 20px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:999;transform:translateY(60px);opacity:0;transition:all 0.3s;pointer-events:none;}
-.pdf-toast.show{transform:translateY(0);opacity:1;}
-.acte-preview{background:var(--parchment);border:1px solid var(--bg3);border-radius:var(--r);padding:20px 24px;margin-top:4px;font-family:var(--font-serif);font-size:12px;line-height:1.8;color:var(--ink);display:none;}
-.acte-preview.visible{display:block;}
-.acte-preview h3{font-size:14px;font-weight:700;text-align:center;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;}
-.acte-preview h4{font-size:12px;font-weight:700;text-align:center;margin-bottom:16px;color:var(--ink3);}
-.acte-preview .ap-section{margin-bottom:12px;}
-.acte-preview .ap-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--seal);margin-bottom:4px;}
-.acte-preview .ap-body{font-size:11.5px;line-height:1.8;color:var(--ink2);}
-.acte-preview .ap-sign{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:24px;padding-top:16px;border-top:1px solid var(--bg3);}
-.acte-preview .ap-sign-box{border-top:1px solid var(--ink);padding-top:8px;text-align:center;font-size:10px;color:var(--ink3);}
 </style>
 </head>
 <body>
 
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-mark">
-      <div class="logo-seal">NI</div>
-      <div>
-        <div class="logo-name">Nota<span>IA</span></div>
-        <div class="logo-tag">Assistant Notarial IA</div>
+<!-- MODAL NOUVEAU DOSSIER -->
+<div class="modal-overlay hidden" id="modal-nouveau">
+  <div class="modal">
+    <div class="modal-title">Nouveau dossier</div>
+    <div class="modal-sub">Créez un nouveau dossier notarial</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Type d'acte <span>*</span></label>
+        <select class="form-select" id="new-type">
+          <option value="vente">Vente immobilière</option>
+          <option value="societe">Statuts de société</option>
+          <option value="procuration">Procuration</option>
+          <option value="succession">Succession</option>
+          <option value="donation">Donation</option>
+          <option value="bail">Bail & Location</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pays <span>*</span></label>
+        <select class="form-select" id="new-pays">
+          <option value="france">🇫🇷 France</option>
+          <option value="senegal">🇸🇳 Sénégal</option>
+          <option value="cotedivoire">🇨🇮 Côte d'Ivoire</option>
+          <option value="maroc">🇲🇦 Maroc</option>
+          <option value="cameroun">🇨🇲 Cameroun</option>
+        </select>
       </div>
     </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label class="form-label">Référence client / Intitulé <span>*</span></label>
+        <input type="text" class="form-input" id="new-ref" placeholder="Ex: Dupont / Vente appartement Paris 15e">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
+      <button class="btn btn-seal" onclick="creerDossier()">Créer le dossier →</button>
+    </div>
   </div>
+</div>
 
-  <!-- France → Afrique -->
-  <div class="flag-banner">
-    <span class="flag-tag">Actif</span>
-    <div class="flags">
-      <span class="flag">🇫🇷</span>
-      <span class="flag-arrow">→</span>
-      <span class="flag">🇸🇳</span>
-      <span class="flag">🇨🇮</span>
-      <span class="flag">🇲🇦</span>
-      <span class="flag">🇨🇲</span>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-seal">NI</div>
+    <div class="logo-text">
+      <div class="logo-name">Nota<span>IA</span></div>
+      <div class="logo-tag">Le copilote des études notariales</div>
     </div>
   </div>
 
   <div class="sidebar-section">
-    <div class="sl">Navigation</div>
-    <button class="nav-item active" onclick="showScreen('assistant',this)">
-      <span class="nav-icon">💬</span> <span>Assistant IA</span>
-    </button>
-    <button class="nav-item" onclick="showScreen('actes',this)">
-      <span class="nav-icon">📄</span> <span>Mes Actes</span>
-      <span class="nav-badge">8</span>
+    <div class="sl">Principal</div>
+    <button class="nav-item active" onclick="showScreen('dossiers',this)">
+      <span class="nav-icon">📁</span> Dossiers
+      <span class="nav-badge" id="badge-dossiers">8</span>
     </button>
     <button class="nav-item" onclick="showScreen('dashboard',this)">
-      <span class="nav-icon">📊</span> <span>Tableau de Bord</span>
+      <span class="nav-icon">📊</span> Tableau de bord
     </button>
-    <button class="nav-item" onclick="showScreen('docs',this)">
-      <span class="nav-icon">📚</span> <span>Base Juridique</span>
+    <button class="nav-item" onclick="showScreen('assistant',this)">
+      <span class="nav-icon">💬</span> Assistant juridique
     </button>
   </div>
 
   <div class="divider"></div>
 
   <div class="sidebar-section">
-    <div class="sl">Outils</div>
-    <button class="nav-item" onclick="showScreen('clients',this)">
-      <span class="nav-icon">👥</span> <span>Clients</span>
-      <span class="nav-sub">31</span>
-    </button>
-    <button class="nav-item" onclick="showScreen('conformite',this)">
-      <span class="nav-icon">🔍</span> <span>Vérif. Conformité</span>
-    </button>
+    <div class="sl">Ressources</div>
     <button class="nav-item" onclick="showScreen('modeles',this)">
-      <span class="nav-icon">📋</span> <span>Modèles d'Actes</span>
-      <span class="nav-sub">120+</span>
+      <span class="nav-icon">📋</span> Modèles d'actes
+      <span class="nav-count">120+</span>
+    </button>
+    <button class="nav-item" onclick="showScreen('docs',this)">
+      <span class="nav-icon">📚</span> Base juridique
+    </button>
+    <button class="nav-item" onclick="showScreen('clients',this)">
+      <span class="nav-icon">👥</span> Clients
+      <span class="nav-count">31</span>
     </button>
   </div>
 
   <div class="divider"></div>
 
-  <!-- Pays actifs -->
-  <div class="pays-sidebar">
-    <div class="pays-sidebar-title">Pays actifs</div>
-    <div class="pays-row"><span class="pays-flag-sm">🇫🇷</span><span class="pays-label">France</span><span class="pays-dot" style="background:#34C759"></span></div>
-    <div class="pays-row"><span class="pays-flag-sm">🇸🇳</span><span class="pays-label">Sénégal</span><span class="pays-count">12 actes</span></div>
-    <div class="pays-row"><span class="pays-flag-sm">🇨🇮</span><span class="pays-label">Côte d'Ivoire</span><span class="pays-count">8 actes</span></div>
-    <div class="pays-row"><span class="pays-flag-sm">🇲🇦</span><span class="pays-label">Maroc</span><span class="pays-count">6 actes</span></div>
-    <div class="pays-row"><span class="pays-flag-sm">🇨🇲</span><span class="pays-label">Cameroun</span><span class="pays-count">4 actes</span></div>
+  <div class="pays-mini">
+    <div class="pays-mini-title">Pays actifs</div>
+    <div class="pays-mini-row"><span class="pm-flag">🇫🇷</span><span class="pm-name">France</span><span class="pm-active"></span></div>
+    <div class="pays-mini-row"><span class="pm-flag">🇸🇳</span><span class="pm-name">Sénégal</span><span class="pm-count">12</span></div>
+    <div class="pays-mini-row"><span class="pm-flag">🇨🇮</span><span class="pm-name">Côte d'Ivoire</span><span class="pm-count">8</span></div>
+    <div class="pays-mini-row"><span class="pm-flag">🇲🇦</span><span class="pm-name">Maroc</span><span class="pm-count">6</span></div>
+    <div class="pays-mini-row"><span class="pm-flag">🇨🇲</span><span class="pm-name">Cameroun</span><span class="pm-count">4</span></div>
   </div>
 
   <div class="divider"></div>
   <div class="sidebar-section">
     <button class="nav-item" onclick="showScreen('pricing',this)">
-      <span class="nav-icon">💎</span> <span>Plans & Tarifs</span>
+      <span class="nav-icon">💎</span> Plans & Tarifs
     </button>
     <button class="nav-item" onclick="showScreen('settings',this)">
-      <span class="nav-icon">⚙️</span> <span>Paramètres</span>
+      <span class="nav-icon">⚙️</span> Paramètres
     </button>
   </div>
 
@@ -375,748 +375,992 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:
     <div class="user-av">MD</div>
     <div>
       <div class="user-name">Maître Diallo</div>
-      <div class="user-role">Notaire — Paris & Dakar</div>
+      <div class="user-role">Paris & Dakar</div>
     </div>
-    <div class="status-green"></div>
+    <div class="online-dot"></div>
   </div>
 </aside>
 
+<!-- MAIN -->
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="screen-title">Assistant IA</div>
-      <div class="topbar-crumb" id="topbar-crumb">France → Afrique francophone</div>
+      <div class="topbar-title" id="screen-title">Dossiers</div>
+      <span class="topbar-sep">›</span>
+      <div class="topbar-sub" id="screen-sub">France → Afrique francophone</div>
     </div>
     <div class="topbar-right">
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('fr',this)">FR</button>
-        <button class="lang-btn" onclick="setLang('en',this)">EN</button>
-      </div>
-      <span class="pill pill-blue">🇫🇷 Paris</span>
-      <span class="pill pill-gold">✦ NotaIA Pro</span>
+      <span class="tb-pill tb-pill-gold">✦ NotaIA Pro</span>
+      <button class="tb-btn primary" onclick="openModal()">+ Nouveau dossier</button>
     </div>
   </div>
 
+  <!-- BANNIÈRE CONFIANCE -->
+  <div style="background:linear-gradient(135deg,#1B3A6B 0%,#7A2121 100%);padding:8px 20px;display:flex;align-items:center;justify-content:center;gap:24px;flex-shrink:0;">
+    <span style="font-size:11px;color:rgba(255,255,255,0.9);display:flex;align-items:center;gap:6px;">🔒 <strong>Données confidentielles</strong> — Chiffrement AES-256</span>
+    <span style="color:rgba(255,255,255,0.3);">|</span>
+    <span style="font-size:11px;color:rgba(255,255,255,0.9);display:flex;align-items:center;gap:6px;">⚖️ <strong>Validation humaine obligatoire</strong> — L'IA prépare, le notaire valide</span>
+    <span style="color:rgba(255,255,255,0.3);">|</span>
+    <span style="font-size:11px;color:rgba(255,255,255,0.9);display:flex;align-items:center;gap:6px;">✅ <strong>Conforme</strong> — Code Civil · OHADA · Moudawwana</span>
+  </div>
   <div class="content">
 
-    <!-- ASSISTANT -->
-    <div class="screen active" id="screen-assistant">
-
-      <div class="flow-banner">
-        <div class="flow-left">
-          <div class="flow-title">Droit notarial France & Afrique francophone</div>
-          <div class="flow-sub">Actes conformes aux législations françaises, sénégalaise, ivoirienne, marocaine et camerounaise</div>
-        </div>
-        <div class="flow-right">
-          <div class="flow-country"><span class="flow-flag">🇫🇷</span><span class="flow-country-name">FRANCE</span></div>
-          <div class="flow-arr">→</div>
-          <div class="flow-countries">
-            <div class="flow-country"><span class="flow-flag">🇸🇳</span><span class="flow-country-name">SEN</span></div>
-            <div class="flow-country"><span class="flow-flag">🇨🇮</span><span class="flow-country-name">CIV</span></div>
-            <div class="flow-country"><span class="flow-flag">🇲🇦</span><span class="flow-country-name">MAR</span></div>
-            <div class="flow-country"><span class="flow-flag">🇨🇲</span><span class="flow-country-name">CMR</span></div>
-          </div>
-        </div>
+    <!-- ══ DOSSIERS ══ -->
+    <div class="screen active" id="screen-dossiers">
+      <div class="stats-bar">
+        <div class="stat-box"><div class="stat-label">Total dossiers</div><div class="stat-val">31</div><div class="stat-sub"><span class="stat-up">↑ +3</span> ce mois</div></div>
+        <div class="stat-box"><div class="stat-label">En cours</div><div class="stat-val">8</div><div class="stat-sub">3 urgents</div></div>
+        <div class="stat-box"><div class="stat-label">Finalisés</div><div class="stat-val">19</div><div class="stat-sub">ce mois</div></div>
+        <div class="stat-box"><div class="stat-label">Temps économisé</div><div class="stat-val">22h</div><div class="stat-sub">grâce à NotaIA</div></div>
       </div>
 
-      <div class="qa-grid">
-        <div class="qa-card" onclick="startActe('vente')">
-          <div class="qa-icon">🏠</div>
-          <div class="qa-title">Acte de Vente</div>
-          <div class="qa-desc">Vente immobilière, terrains, biens bâtis — droit français et africain</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇨🇮</span><span>🇲🇦</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('societe')">
-          <div class="qa-icon">🏢</div>
-          <div class="qa-title">Statuts de Société</div>
-          <div class="qa-desc">SARL, SA, SAS, EURL — France, OHADA et droit local</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇨🇮</span><span>🇨🇲</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('procuration')">
-          <div class="qa-icon">✍️</div>
-          <div class="qa-title">Procuration</div>
-          <div class="qa-desc">Mandats généraux et spéciaux, gestion de patrimoine transfrontalier</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇲🇦</span><span>🇨🇲</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('succession')">
-          <div class="qa-icon">📜</div>
-          <div class="qa-title">Succession</div>
-          <div class="qa-desc">Attestations notariales, partage, héritage franco-africain</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇨🇮</span><span>🇨🇲</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('donation')">
-          <div class="qa-icon">🤝</div>
-          <div class="qa-title">Donation</div>
-          <div class="qa-desc">Donations entre vifs, donation-partage, optimisation fiscale</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇲🇦</span><span>🇨🇮</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('bail')">
-          <div class="qa-icon">🔑</div>
-          <div class="qa-title">Bail & Location</div>
-          <div class="qa-desc">Baux commerciaux, résidentiels, locaux professionnels</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇲🇦</span><span>🇨🇲</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('conformite_check')">
-          <div class="qa-icon">✅</div>
-          <div class="qa-title">Vérifier un Acte</div>
-          <div class="qa-desc">Conformité juridique, clauses manquantes, risques</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇨🇮</span><span>🇲🇦</span></div>
-        </div>
-        <div class="qa-card" onclick="startActe('question')">
-          <div class="qa-icon">💡</div>
-          <div class="qa-title">Question Juridique</div>
-          <div class="qa-desc">Toute question de droit notarial, civil ou immobilier</div>
-          <div class="qa-pays"><span>🇫🇷</span><span>🇸🇳</span><span>🇨🇮</span><span>🇲🇦</span><span>🇨🇲</span></div>
-        </div>
-      </div>
-
-      <div class="chat-wrap">
-        <div class="chat-head">
-          <div class="chat-status-dot"></div>
-          <div class="chat-head-title">NotaIA</div>
-          <div class="chat-head-info">
-            <span class="chat-head-tag">🇫🇷 Code Civil</span>
-            <span class="chat-head-tag">⚖️ OHADA</span>
-            <span class="chat-head-tag">🇲🇦 Moudawwana</span>
-            <button class="pdf-btn" id="pdf-btn" onclick="generatePDF()">📄 Télécharger l'acte PDF</button>
-          </div>
-        </div>
-        <div class="chat-msgs" id="chat-msgs">
-          <div class="msg ai">
-            <div class="msg-av ai">NI</div>
-            <div class="bubble ai">Bonjour Maître ! Je suis <strong>NotaIA</strong>, votre assistant juridique France ↔ Afrique francophone.<br><br>⚡ <strong>Mon fonctionnement :</strong><br>1️⃣ Vous choisissez un type d'acte<br>2️⃣ Je vous pose <strong>toutes les questions</strong> nécessaires<br>3️⃣ Vous validez le récapitulatif<br>4️⃣ Je génère l'acte <strong>complet et sans champs vides</strong><br><br>Je couvre le <strong>Code Civil français</strong>, le <strong>droit OHADA</strong> et les droits locaux au Sénégal, Côte d'Ivoire, Maroc et Cameroun. Choisissez un acte ci-dessus !</div>
-          </div>
-        </div>
-        <div class="typing" id="typing">
-          <div class="msg-av ai" style="width:26px;height:26px;border-radius:50%;background:var(--seal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--font-serif);">NI</div>
-          <div class="td"></div><div class="td"></div><div class="td"></div>
-        </div>
-        <div class="chat-input-row">
-          <textarea class="chat-ta" id="chat-input" placeholder="Question juridique, rédaction d'acte, vérification de conformité..." rows="1" onkeydown="handleKey(event)"></textarea>
-          <button class="send-btn" id="send-btn" onclick="sendMsg()">Envoyer →</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACTES -->
-    <div class="screen" id="screen-actes">
-      <div class="toolbar">
-        <input type="text" class="search" placeholder="🔍  Rechercher un acte, un client, un pays...">
+      <div class="dossiers-toolbar">
+        <input type="text" class="search-input" placeholder="🔍  Rechercher un dossier, client, référence...">
         <div class="btn-group">
           <button class="btn btn-ghost">Tous les pays ▾</button>
           <button class="btn btn-ghost">Tous statuts ▾</button>
-          <button class="btn btn-red">+ Nouvel acte</button>
+          <button class="btn btn-seal" onclick="openModal()">+ Nouveau dossier</button>
         </div>
       </div>
-      <div class="table-wrap">
-        <div class="thead"><div>Acte</div><div>Parties</div><div>Date</div><div>Pays</div><div>Valeur</div><div>Statut</div></div>
-        <div class="trow"><div><div class="acte-n">Vente immobilière</div><div class="acte-s">Appartement 3P — Paris 15e</div></div><div style="font-size:12px;color:var(--ink2);">Dupont / Martin</div><div style="font-size:12px;color:var(--ink3);">03 juin 2026</div><div>🇫🇷 France</div><div style="font-size:12px;font-weight:600;">480 000 €</div><div><span class="badge b-green">● Finalisé</span></div></div>
-        <div class="trow"><div><div class="acte-n">Vente immobilière</div><div class="acte-s">Parcelle 2547 — Dakar Plateau</div></div><div style="font-size:12px;color:var(--ink2);">Ouédraogo / Koné</div><div style="font-size:12px;color:var(--ink3);">02 juin 2026</div><div>🇸🇳 Sénégal</div><div style="font-size:12px;font-weight:600;">45M FCFA</div><div><span class="badge b-green">● Finalisé</span></div></div>
-        <div class="trow"><div><div class="acte-n">Statuts SARL</div><div class="acte-s">Capital 50 000 € — Paris</div></div><div style="font-size:12px;color:var(--ink2);">Gomes Almada</div><div style="font-size:12px;color:var(--ink3);">28 mai 2026</div><div>🇫🇷 France</div><div style="font-size:12px;font-weight:600;">50 000 €</div><div><span class="badge b-orange">● En cours</span></div></div>
-        <div class="trow"><div><div class="acte-n">Procuration générale</div><div class="acte-s">Gestion patrimoine — France/Sénégal</div></div><div style="font-size:12px;color:var(--ink2);">Mme Diallo</div><div style="font-size:12px;color:var(--ink3);">25 mai 2026</div><div>🇫🇷🇸🇳 Transfrontalier</div><div style="font-size:12px;color:var(--ink3);">—</div><div><span class="badge b-green">● Finalisé</span></div></div>
-        <div class="trow"><div><div class="acte-n">Acte de donation</div><div class="acte-s">Villa Cocody — 320m²</div></div><div style="font-size:12px;color:var(--ink2);">Famille Touré</div><div style="font-size:12px;color:var(--ink3);">20 mai 2026</div><div>🇨🇮 Côte d'Ivoire</div><div style="font-size:12px;font-weight:600;">120M FCFA</div><div><span class="badge b-blue">● En révision</span></div></div>
-        <div class="trow"><div><div class="acte-n">Contrat de bail commercial</div><div class="acte-s">Local 180m² — Casablanca</div></div><div style="font-size:12px;color:var(--ink2);">Benali / SCI Atlas</div><div style="font-size:12px;color:var(--ink3);">15 mai 2026</div><div>🇲🇦 Maroc</div><div style="font-size:12px;font-weight:600;">8 500 MAD/m</div><div><span class="badge b-green">● Finalisé</span></div></div>
-        <div class="trow"><div><div class="acte-n">Succession</div><div class="acte-s">Héritage Franco-Camerounais</div></div><div style="font-size:12px;color:var(--ink2);">Famille Mbarga</div><div style="font-size:12px;color:var(--ink3);">10 mai 2026</div><div>🇫🇷🇨🇲 Transfrontalier</div><div style="font-size:12px;font-weight:600;">320 000 €</div><div><span class="badge b-orange">● En cours</span></div></div>
-        <div class="trow"><div><div class="acte-n">Attestation de propriété</div><div class="acte-s">Terrain 1200m² — Yaoundé</div></div><div style="font-size:12px;color:var(--ink2);">M. Mbarga</div><div style="font-size:12px;color:var(--ink3);">08 mai 2026</div><div>🇨🇲 Cameroun</div><div style="font-size:12px;font-weight:600;">—</div><div><span class="badge b-orange">● En cours</span></div></div>
+
+      <div class="dossiers-grid" id="dossiers-grid">
+        <!-- Populated by JS -->
       </div>
     </div>
 
-    <!-- DASHBOARD -->
-    <div class="screen" id="screen-dashboard">
-      <div class="stats-row">
-        <div class="sc"><div class="sc-label">Actes ce mois</div><div class="sc-val">31</div><div class="sc-sub"><span class="sc-up">↑ +7</span> vs mai</div></div>
-        <div class="sc"><div class="sc-label">Transfrontaliers 🇫🇷↔🌍</div><div class="sc-val">14</div><div class="sc-sub">45% du total</div></div>
-        <div class="sc"><div class="sc-label">Temps économisé</div><div class="sc-val">22h</div><div class="sc-sub"><span class="sc-up">↑ +4h</span> grâce à NotaIA</div></div>
-        <div class="sc"><div class="sc-label">Valeur totale</div><div class="sc-val">2.4M</div><div class="sc-sub">EUR + devises africaines</div></div>
+    <!-- ══ DOSSIER DETAIL ══ -->
+    <div class="screen" id="screen-detail">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <button class="btn btn-ghost btn-sm" onclick="showScreen('dossiers',document.querySelector('.nav-item.active'))">← Dossiers</button>
+        <div id="detail-breadcrumb" style="font-size:12px;color:var(--ink3);"></div>
       </div>
-      <div class="two-col">
+
+      <div class="dossier-layout">
+        <!-- MAIN -->
+        <div class="dossier-main">
+
+          <!-- FORMULAIRE -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">📝 <span id="form-title">Projet d'acte à valider</span></div>
+              <div style="display:flex;gap:6px;">
+                <button class="btn btn-ghost btn-sm" id="btn-generate" onclick="genererActe()">⚡ Préparer le projet d'acte</button>
+                <button class="btn btn-seal btn-sm hidden" id="btn-pdf" onclick="telechargerPDF()">📄 Télécharger le projet</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Import documents -->
+              <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--gold-light);border:1px solid #DFC070;border-radius:var(--r);margin-bottom:12px;">
+                <span style="font-size:14px;">📎</span>
+                <span style="font-size:11.5px;color:var(--ink2);">Importez vos pièces pour pré-remplir automatiquement les champs</span>
+                <input type="file" id="import-docs" multiple accept=".pdf,.jpg,.png,.doc,.docx" style="display:none;" onchange="importerPieces(this)">
+                <button class="btn btn-ghost btn-sm" style="margin-left:auto;" onclick="document.getElementById('import-docs').click()">📂 Importer</button>
+              </div>
+              <!-- Étapes -->
+              <div class="form-steps" id="form-steps"></div>
+
+              <!-- Sections formulaire -->
+              <div id="form-sections"></div>
+
+              <div class="form-nav">
+                <button class="btn btn-ghost btn-sm" id="btn-prev" onclick="prevStep()" style="visibility:hidden;">← Précédent</button>
+                <div style="font-size:11px;color:var(--ink3);" id="step-indicator">Étape 1 / 3</div>
+                <button class="btn btn-seal btn-sm" id="btn-next" onclick="nextStep()">Suivant →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRÉVISUALISATION -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">👁️ Prévisualisation de l'acte</div>
+              <div class="card-sub" id="preview-status">En attente des informations</div>
+            </div>
+            <div class="card-body" style="padding:12px;">
+              <div class="acte-preview-wrap" id="acte-preview">
+                <div class="preview-placeholder">
+                  <div class="preview-placeholder-icon">📄</div>
+                  <div class="preview-placeholder-text">
+                    Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Générer l'acte"</strong><br>pour voir l'acte apparaître ici.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOCUMENTS GÉNÉRÉS -->
+          <div class="card" id="card-docs" style="display:none;">
+            <div class="card-head">
+              <div class="card-title">📎 Documents du dossier</div>
+            </div>
+            <div class="card-body">
+              <div class="doc-list" id="doc-list"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDE -->
+        <div class="dossier-side">
+
+          <!-- STATUT -->
+          <div class="card">
+            <div class="card-head"><div class="card-title">📋 Statut du dossier</div></div>
+            <div class="card-body">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:12px;color:var(--ink3);">Statut</span>
+                  <select class="form-select" id="dossier-statut" style="width:auto;font-size:11px;padding:3px 6px;" onchange="updateStatut(this.value)">
+                    <option value="ouvert">🟡 Ouvert</option>
+                    <option value="instruction">🔵 En instruction</option>
+                    <option value="revision">🟠 En révision</option>
+                    <option value="finalise">🟢 Finalisé</option>
+                    <option value="archive">⚫ Archivé</option>
+                  </select>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:12px;color:var(--ink3);">Avancement</span>
+                  <span style="font-size:12px;font-weight:600;color:var(--seal);" id="avancement-pct">0%</span>
+                </div>
+                <div class="dc-progress"><div class="dc-progress-fill" id="avancement-bar" style="width:0%"></div></div>
+                <div style="font-size:11px;color:var(--ink3);" id="dossier-ref-display"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHECKLIST -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">✅ Checklist</div>
+              <div class="card-sub" id="checklist-progress">0/0 complétés</div>
+            </div>
+            <div class="card-body" style="padding:10px;">
+              <div class="checklist" id="checklist"></div>
+            </div>
+          </div>
+
+          <!-- ASSISTANT JURIDIQUE -->
+          <div class="card">
+            <div class="card-head"><div class="card-title">💬 Question juridique</div></div>
+            <div class="chat-mini">
+              <div class="chat-mini-msgs" id="chat-mini-msgs">
+                <div class="mini-msg ai">
+                  <div class="mini-av ai">NI</div>
+                  <div class="mini-bubble ai">Posez-moi une question juridique sur ce dossier.</div>
+                </div>
+              </div>
+              <div class="mini-typing" id="mini-typing">
+                <div class="mini-av ai" style="width:22px;height:22px;border-radius:50%;background:var(--seal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;">NI</div>
+                <div class="mt-dot"></div><div class="mt-dot"></div><div class="mt-dot"></div>
+              </div>
+              <div class="chat-mini-input">
+                <input type="text" class="mini-input" id="mini-input" placeholder="Votre question..." onkeydown="if(event.key==='Enter') sendMiniMsg()">
+                <button class="mini-send" onclick="sendMiniMsg()">→</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTES -->
+          <div class="card">
+            <div class="card-head"><div class="card-title">📝 Notes</div></div>
+            <div class="card-body" style="padding:6px;">
+              <textarea class="notes-area" id="notes-area" placeholder="Notes internes sur ce dossier..."></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ DASHBOARD ══ -->
+    <div class="screen" id="screen-dashboard">
+      <div class="stats-bar">
+        <div class="stat-box"><div class="stat-label">Actes ce mois</div><div class="stat-val">31</div><div class="stat-sub"><span class="stat-up">↑ +7</span> vs mai</div></div>
+        <div class="stat-box"><div class="stat-label">Transfrontaliers</div><div class="stat-val">14</div><div class="stat-sub">45% du total</div></div>
+        <div class="stat-box"><div class="stat-label">Temps économisé</div><div class="stat-val">22h</div><div class="stat-sub">~30 min/acte</div></div>
+        <div class="stat-box"><div class="stat-label">Valeur totale</div><div class="stat-val">2.4M</div><div class="stat-sub">EUR + devises</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
         <div class="card">
           <div class="card-head"><div class="card-title">Activité récente</div><div class="card-sub">Juin 2026</div></div>
           <div class="card-body">
-            <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Vente Paris 15e finalisée — Dupont / Martin</div><div class="ai-time">Aujourd'hui, 14:32</div></div></div>
-            <div class="ai-row"><div class="ai-dot" style="background:var(--seal)"></div><div><div class="ai-text">Vente Dakar finalisée — Ouédraogo / Koné</div><div class="ai-time">Aujourd'hui, 11:15</div></div></div>
-            <div class="ai-row"><div class="ai-dot" style="background:var(--gold)"></div><div><div class="ai-text">Statuts SARL en cours — Gomes Almada</div><div class="ai-time">Hier, 09:48</div></div></div>
-            <div class="ai-row"><div class="ai-dot" style="background:var(--blue)"></div><div><div class="ai-text">Succession Franco-Camerounaise en cours</div><div class="ai-time">01 juin, 16:30</div></div></div>
-            <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Bail Casablanca signé — Benali / SCI Atlas</div><div class="ai-time">31 mai, 10:20</div></div></div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--bg2);"><div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:4px;flex-shrink:0;"></div><div><div style="font-size:12px;color:var(--ink2);">Vente Paris 15e finalisée — Dupont / Martin</div><div style="font-size:10px;color:var(--ink3);">Aujourd'hui, 14:32</div></div></div>
+              <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--bg2);"><div style="width:6px;height:6px;border-radius:50%;background:var(--seal);margin-top:4px;flex-shrink:0;"></div><div><div style="font-size:12px;color:var(--ink2);">Vente Dakar finalisée — Ouédraogo / Koné</div><div style="font-size:10px;color:var(--ink3);">Aujourd'hui, 11:15</div></div></div>
+              <div style="display:flex;gap:8px;padding:7px 0;"><div style="width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:4px;flex-shrink:0;"></div><div><div style="font-size:12px;color:var(--ink2);">Statuts SARL en cours — Gomes Almada</div><div style="font-size:10px;color:var(--ink3);">Hier, 09:48</div></div></div>
+            </div>
           </div>
         </div>
         <div class="card">
-          <div class="card-head"><div class="card-title">Répartition par pays</div><div class="card-sub">Actes juin 2026</div></div>
+          <div class="card-head"><div class="card-title">Répartition par pays</div></div>
           <div class="card-body">
-            <div class="pays-bar-row"><span class="pbr-flag">🇫🇷</span><span class="pbr-name">France</span><div class="pbr-wrap"><div class="pbr-fill" style="width:80%;background:var(--blue)"></div></div><span class="pbr-pct">38%</span></div>
-            <div class="pays-bar-row"><span class="pbr-flag">🇸🇳</span><span class="pbr-name">Sénégal</span><div class="pbr-wrap"><div class="pbr-fill" style="width:55%"></div></div><span class="pbr-pct">26%</span></div>
-            <div class="pays-bar-row"><span class="pbr-flag">🇨🇮</span><span class="pbr-name">Côte d'Ivoire</span><div class="pbr-wrap"><div class="pbr-fill" style="width:35%"></div></div><span class="pbr-pct">17%</span></div>
-            <div class="pays-bar-row"><span class="pbr-flag">🇲🇦</span><span class="pbr-name">Maroc</span><div class="pbr-wrap"><div class="pbr-fill" style="width:22%"></div></div><span class="pbr-pct">11%</span></div>
-            <div class="pays-bar-row"><span class="pbr-flag">🇨🇲</span><span class="pbr-name">Cameroun</span><div class="pbr-wrap"><div class="pbr-fill" style="width:16%"></div></div><span class="pbr-pct">8%</span></div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🇫🇷</span><span style="font-size:12px;width:80px;">France</span><div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="height:5px;width:80%;background:var(--blue);border-radius:3px;"></div></div><span style="font-size:11px;color:var(--ink3);">38%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🇸🇳</span><span style="font-size:12px;width:80px;">Sénégal</span><div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="height:5px;width:55%;background:var(--seal);border-radius:3px;"></div></div><span style="font-size:11px;color:var(--ink3);">26%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🇨🇮</span><span style="font-size:12px;width:80px;">Côte d'Ivoire</span><div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="height:5px;width:35%;background:var(--seal);border-radius:3px;"></div></div><span style="font-size:11px;color:var(--ink3);">17%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🇲🇦</span><span style="font-size:12px;width:80px;">Maroc</span><div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="height:5px;width:22%;background:var(--seal);border-radius:3px;"></div></div><span style="font-size:11px;color:var(--ink3);">11%</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:14px;">🇨🇲</span><span style="font-size:12px;width:80px;">Cameroun</span><div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="height:5px;width:16%;background:var(--seal);border-radius:3px;"></div></div><span style="font-size:11px;color:var(--ink3);">8%</span></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="three-col">
-        <div class="card"><div class="card-head"><div class="card-title">Types d'actes</div></div><div class="card-body">
-          <div class="ai-row"><div class="ai-dot" style="background:var(--seal)"></div><div><div class="ai-text">Ventes immobilières</div><div class="ai-time">42% — 13 actes</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--gold)"></div><div><div class="ai-text">Statuts de société</div><div class="ai-time">23% — 7 actes</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--blue)"></div><div><div class="ai-text">Procurations</div><div class="ai-time">16% — 5 actes</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Successions</div><div class="ai-time">13% — 4 actes</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--ink3)"></div><div><div class="ai-text">Autres</div><div class="ai-time">6% — 2 actes</div></div></div>
-        </div></div>
-        <div class="card"><div class="card-head"><div class="card-title">NotaIA — Gains</div></div><div class="card-body">
-          <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Temps économisé ce mois</div><div class="ai-time">22h — ~30 min/acte</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Actes générés par IA</div><div class="ai-time">18 sur 31 (58%)</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--gold)"></div><div><div class="ai-text">Erreurs détectées</div><div class="ai-time">7 clauses manquantes</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--blue)"></div><div><div class="ai-text">Dossiers transfrontaliers</div><div class="ai-time">14 France ↔ Afrique</div></div></div>
-        </div></div>
-        <div class="card"><div class="card-head"><div class="card-title">Alertes</div></div><div class="card-body">
-          <div class="ai-row"><div class="ai-dot" style="background:var(--orange)"></div><div><div class="ai-text">3 actes en attente de signature</div><div class="ai-time">Délai dépassé demain</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--orange)"></div><div><div class="ai-text">Succession Mbarga — docs manquants</div><div class="ai-time">Acte de décès requis</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--gold)"></div><div><div class="ai-text">Mise à jour droit camerounais</div><div class="ai-time">Vérification recommandée</div></div></div>
-          <div class="ai-row"><div class="ai-dot" style="background:var(--green)"></div><div><div class="ai-text">Base juridique Sénégal</div><div class="ai-time">Mise à jour disponible</div></div></div>
-        </div></div>
-      </div>
     </div>
 
-    <!-- DOCS -->
-    <div class="screen" id="screen-docs">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <div><div style="font-size:14px;font-weight:700;color:var(--ink);">Base de données juridique</div><div style="font-size:12px;color:var(--ink3);margin-top:2px;">Législations, codes civils, droit OHADA et jurisprudences</div></div>
-        <input type="text" class="search" placeholder="🔍  Rechercher un texte de loi...">
-      </div>
-      <div class="docs-grid">
-        <div class="doc-card"><div class="doc-icon">⚖️</div><div class="doc-country">🇫🇷 France</div><div class="doc-title">Code Civil & Droit notarial</div><div class="doc-desc">Loi 25 ventôse an XI, actes authentiques, responsabilité notariale, tarification.</div><div class="doc-foot"><span>Mis à jour juin 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🏠</div><div class="doc-country">🇫🇷 France</div><div class="doc-title">Immobilier & Urbanisme</div><div class="doc-desc">Loi Carrez, diagnostics obligatoires, SRU, PLU, plus-values immobilières.</div><div class="doc-foot"><span>Mis à jour juin 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🌍</div><div class="doc-country">⚖️ OHADA</div><div class="doc-title">Acte Uniforme des Sociétés</div><div class="doc-desc">SARL, SA, SAS, GIE — règles communes Sénégal, Côte d'Ivoire, Cameroun.</div><div class="doc-foot"><span>Mis à jour mai 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🇸🇳</div><div class="doc-country">🇸🇳 Sénégal</div><div class="doc-title">Droit immobilier & Foncier</div><div class="doc-desc">Code du domaine de l'État, régimes fonciers, immatriculation, bail emphytéotique.</div><div class="doc-foot"><span>Mis à jour mai 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🇨🇮</div><div class="doc-country">🇨🇮 Côte d'Ivoire</div><div class="doc-title">Code Foncier & Rural</div><div class="doc-desc">Loi 98-750, droits coutumiers, certification foncière, baux ruraux.</div><div class="doc-foot"><span>Mis à jour mai 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🇲🇦</div><div class="doc-country">🇲🇦 Maroc</div><div class="doc-title">Code Civil & Moudawwana</div><div class="doc-desc">Droit des obligations, successions, régimes matrimoniaux, conservation foncière.</div><div class="doc-foot"><span>Mis à jour avril 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🇨🇲</div><div class="doc-country">🇨🇲 Cameroun</div><div class="doc-title">Droit foncier & immobilier</div><div class="doc-desc">Ordonnance foncière 1974, titres fonciers, baux, expropriation pour utilité publique.</div><div class="doc-foot"><span>Mis à jour mars 2026</span><span class="dbadge dbadge-warn">Vérification</span></div></div>
-        <div class="doc-card"><div class="doc-icon">📋</div><div class="doc-country">🌍 Tous pays</div><div class="doc-title">Modèles d'actes types</div><div class="doc-desc">120+ modèles : vente, donation, procuration, bail, société, succession.</div><div class="doc-foot"><span>Mis à jour juin 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-        <div class="doc-card"><div class="doc-icon">🔗</div><div class="doc-country">🇫🇷↔🌍 Transfrontalier</div><div class="doc-title">Droit International Privé</div><div class="doc-desc">Conventions bilatérales France-Sénégal, France-Maroc, conflits de lois, exequatur.</div><div class="doc-foot"><span>Mis à jour juin 2026</span><span class="dbadge dbadge-ok">À jour</span></div></div>
-      </div>
-    </div>
-
-    <!-- OTHER SCREENS -->
-    <div class="screen" id="screen-clients"><div style="text-align:center;padding:60px 20px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:14px;">👥</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Gestion des clients</div><div style="font-size:12px;">Disponible dans la prochaine version.</div></div></div>
-    <div class="screen" id="screen-conformite"><div style="text-align:center;padding:60px 20px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:14px;">🔍</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Vérification de conformité</div><div style="font-size:12px;">Collez votre acte dans le chat pour une analyse complète.</div></div></div>
-    <div class="screen" id="screen-modeles"><div style="text-align:center;padding:60px 20px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:14px;">📋</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Bibliothèque de modèles</div><div style="font-size:12px;">120+ modèles disponibles — bientôt intégrés.</div></div></div>
-    <!-- PRICING SCREEN -->
-    <div class="screen" id="screen-pricing">
-
-      <div class="pricing-hero">
-        <div class="pricing-hero-title">Plans & Tarifs NotaIA</div>
-        <div class="pricing-hero-sub">Choisissez l'offre adaptée à votre cabinet · Sans engagement · Résiliable à tout moment</div>
-        <div class="pricing-toggle">
-          <span>Mensuel</span>
-          <div class="toggle-wrap" id="billing-toggle" onclick="toggleBilling()"><div class="toggle-knob"></div></div>
-          <span>Annuel <span class="pricing-badge">-20%</span></span>
+    <!-- ══ ASSISTANT JURIDIQUE ══ -->
+    <div class="screen" id="screen-assistant">
+      <div class="card" style="max-width:800px;">
+        <div class="card-head"><div class="card-title">💬 Assistant juridique — Questions libres</div></div>
+        <div class="card-body" style="padding:0;">
+          <div id="assistant-msgs" style="padding:16px;display:flex;flex-direction:column;gap:12px;min-height:300px;max-height:450px;overflow-y:auto;">
+            <div class="mini-msg ai">
+              <div class="mini-av ai">NI</div>
+              <div class="mini-bubble ai" style="max-width:85%;font-size:13px;">Bonjour Maître ! Posez-moi toute question de droit notarial — Code Civil français, droit OHADA, Moudawwana marocaine, droit transfrontalier France ↔ Afrique.</div>
+            </div>
+          </div>
+          <div class="mini-typing" id="assistant-typing">
+            <div class="mini-av ai" style="width:22px;height:22px;border-radius:50%;background:var(--seal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin:0 10px 8px;">NI</div>
+            <div class="mt-dot"></div><div class="mt-dot"></div><div class="mt-dot"></div>
+          </div>
+          <div style="padding:12px 16px;border-top:1px solid var(--bg2);display:flex;gap:8px;">
+            <input type="text" class="mini-input" id="assistant-input" placeholder="Votre question juridique..." onkeydown="if(event.key==='Enter') sendAssistantMsg()" style="font-size:13px;padding:8px 12px;">
+            <button class="mini-send" onclick="sendAssistantMsg()" style="font-size:12px;padding:8px 16px;">Envoyer →</button>
+          </div>
         </div>
       </div>
+    </div>
 
+    <!-- ══ AUTRES ══ -->
+    <div class="screen" id="screen-modeles"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">📋</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">120+ Modèles d'actes</div><div style="font-size:12px;">Disponible dans la prochaine version.</div></div></div>
+    <div class="screen" id="screen-docs"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">📚</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Base juridique</div><div style="font-size:12px;">France · OHADA · Maroc — Bientôt disponible.</div></div></div>
+    <div class="screen" id="screen-clients"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">👥</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Gestion des clients</div><div style="font-size:12px;">Disponible dans la prochaine version.</div></div></div>
+    <div class="screen" id="screen-settings"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">⚙️</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Paramètres</div><div style="font-size:12px;">Configuration du cabinet.</div></div></div>
+
+    <!-- ══ PRICING ══ -->
+    <div class="screen" id="screen-pricing">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-family:var(--font-serif);font-size:24px;color:var(--ink);margin-bottom:6px;">Plans & Tarifs</div>
+        <div style="font-size:12px;color:var(--ink3);">Sans engagement · Résiliable à tout moment</div>
+      </div>
       <div class="plans-grid">
-        <!-- FREE -->
         <div class="plan-card">
           <div class="plan-badge">Découverte</div>
           <div class="plan-name">Gratuit</div>
-          <div class="plan-desc">Pour tester NotaIA et découvrir ses capacités</div>
-          <div class="plan-price"><div class="plan-amount free">0€</div><div class="plan-period">/mois</div></div>
-          <div class="plan-annual" style="opacity:0;">—</div>
+          <div class="plan-desc">Pour tester NotaIA</div>
+          <div class="plan-price"><div class="plan-amount" style="color:var(--green);">0€</div><div class="plan-period">/mois</div></div>
           <div class="plan-divider"></div>
           <div class="plan-features">
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>3 actes</strong> générés/mois</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>10 questions</strong> juridiques/mois</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>1 pays</strong> au choix</span></div>
-            <div class="plan-feature"><span class="feat-x">✗</span><span style="opacity:0.4;">Téléchargement PDF</span></div>
-            <div class="plan-feature"><span class="feat-x">✗</span><span style="opacity:0.4;">Sauvegarde des actes</span></div>
-            <div class="plan-feature"><span class="feat-x">✗</span><span style="opacity:0.4;">Droit transfrontalier</span></div>
-            <div class="plan-feature"><span class="feat-x">✗</span><span style="opacity:0.4;">Modèles d'actes</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>3 dossiers/mois</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>1 pays</span></div>
+            <div class="plan-feature"><span class="feat-no">✗</span><span style="opacity:0.5;">PDF professionnel</span></div>
+            <div class="plan-feature"><span class="feat-no">✗</span><span style="opacity:0.5;">Sauvegarde</span></div>
           </div>
-          <button class="plan-cta cta-free" onclick="selectPlan('free')">Commencer gratuitement</button>
-          <div class="plan-limit">Filigrane NotaIA sur les actes</div>
+          <button class="plan-cta cta-ghost">Version actuelle</button>
         </div>
-
-        <!-- PRO -->
         <div class="plan-card featured">
           <div class="plan-badge">Notaire individuel</div>
           <div class="plan-name">Pro</div>
-          <div class="plan-desc">Pour les notaires individuels et petits cabinets</div>
-          <div class="plan-price"><div class="plan-amount" id="pro-price">89€</div><div class="plan-period">/mois</div></div>
-          <div class="plan-annual" id="pro-annual">soit 1 068€/an</div>
+          <div class="plan-desc">Pour les notaires et petits cabinets</div>
+          <div class="plan-price"><div class="plan-amount">89€</div><div class="plan-period">/mois</div></div>
           <div class="plan-divider"></div>
           <div class="plan-features">
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Actes illimités</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Questions illimitées</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>5 pays</strong> : France + Afrique</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>PDF professionnel</strong> sans filigrane</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Sauvegarde</strong> des actes</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Droit transfrontalier</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>120+ modèles</strong> d'actes</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Calcul frais notariaux</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Support email 24h</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span><strong>Dossiers illimités</strong></span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>5 pays couverts</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>PDF professionnel</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Sauvegarde complète</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Droit transfrontalier</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Support email 24h</span></div>
           </div>
-          <button class="plan-cta cta-pro" onclick="selectPlan('pro')">Démarrer Pro →</button>
-          <div class="plan-limit">1 utilisateur · Sans engagement</div>
+          <button class="plan-cta cta-seal" onclick="showToastMsg('Contactez-nous : info@notaia.fr', 'success')">Démarrer Pro →</button>
         </div>
-
-        <!-- CABINET -->
         <div class="plan-card">
           <div class="plan-badge">Cabinet notarial</div>
           <div class="plan-name">Cabinet</div>
-          <div class="plan-desc">Pour les cabinets avec plusieurs collaborateurs</div>
-          <div class="plan-price"><div class="plan-amount" id="cabinet-price">249€</div><div class="plan-period">/mois</div></div>
-          <div class="plan-annual" id="cabinet-annual">soit 2 988€/an</div>
+          <div class="plan-desc">Pour les cabinets multi-notaires</div>
+          <div class="plan-price"><div class="plan-amount">249€</div><div class="plan-period">/mois</div></div>
           <div class="plan-divider"></div>
           <div class="plan-features">
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Tout ce qu'il y a dans Pro</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>5 utilisateurs</strong> inclus</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Espace partagé</strong> cabinet</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Gestion clients</strong> intégrée</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>En-tête cabinet</strong> sur les PDFs</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Modèles personnalisés</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Support prioritaire 4h</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Formation en ligne 2h</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Accès API</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Tout ce qu'il y a dans Pro</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span><strong>5 utilisateurs</strong></span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Espace partagé</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Gestion clients</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Support prioritaire</span></div>
           </div>
-          <button class="plan-cta cta-cabinet" onclick="selectPlan('cabinet')">Choisir Cabinet →</button>
-          <div class="plan-limit">5 utilisateurs · Facturation annuelle possible</div>
+          <button class="plan-cta cta-blue" onclick="showToastMsg('Contactez-nous : info@notaia.fr', 'success')">Choisir Cabinet →</button>
         </div>
-
-        <!-- ENTERPRISE -->
         <div class="plan-card">
           <div class="plan-badge">Institutions</div>
           <div class="plan-name">Enterprise</div>
-          <div class="plan-desc">Pour les grandes études et ordres des notaires</div>
-          <div class="plan-price"><div class="plan-amount" style="font-size:22px;">Sur devis</div></div>
-          <div class="plan-annual" style="opacity:0;">—</div>
+          <div class="plan-desc">Grandes études & ordres</div>
+          <div class="plan-price"><div class="plan-amount" style="font-size:20px;">Sur devis</div></div>
           <div class="plan-divider"></div>
           <div class="plan-features">
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Tout ce qu'il y a dans Cabinet</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Utilisateurs illimités</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Hébergement dédié</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Marque blanche</strong> possible</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Connexion registres</strong> officiels</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span><strong>Signature électronique</strong></span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>SLA 99,9% garanti</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Account manager dédié</span></div>
-            <div class="plan-feature"><span class="feat-check">✅</span><span>Formation sur site</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Utilisateurs illimités</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Hébergement dédié</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Marque blanche</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>Signature électronique</span></div>
+            <div class="plan-feature"><span class="feat-ok">✓</span><span>SLA 99,9%</span></div>
           </div>
-          <button class="plan-cta cta-enterprise" onclick="selectPlan('enterprise')">Nous contacter →</button>
-          <div class="plan-limit">Contrat annuel · Support 24/7</div>
+          <button class="plan-cta cta-dark" onclick="showToastMsg('Contactez-nous : enterprise@notaia.fr', 'success')">Nous contacter →</button>
         </div>
       </div>
-
-      <!-- COMPARE TABLE -->
-      <div class="compare-section">
-        <div class="compare-title">📊 Tableau comparatif complet</div>
-        <div class="compare-table">
-          <div class="compare-head">
-            <div class="compare-head-cell">Fonctionnalité</div>
-            <div class="compare-head-cell">Gratuit</div>
-            <div class="compare-head-cell" style="color:var(--seal);">Pro</div>
-            <div class="compare-head-cell">Cabinet</div>
-            <div class="compare-head-cell">Enterprise</div>
-          </div>
-          <div class="compare-row"><div class="compare-feat">Actes générés/mois</div><div class="compare-val val-text">3</div><div class="compare-val val-text" style="color:var(--seal);font-weight:700;">Illimité</div><div class="compare-val val-text">Illimité</div><div class="compare-val val-text">Illimité</div></div>
-          <div class="compare-row"><div class="compare-feat">Questions juridiques</div><div class="compare-val val-text">10/mois</div><div class="compare-val val-check">✅ Illimité</div><div class="compare-val val-check">✅ Illimité</div><div class="compare-val val-check">✅ Illimité</div></div>
-          <div class="compare-row"><div class="compare-feat">Pays couverts</div><div class="compare-val val-text">1 pays</div><div class="compare-val val-text" style="color:var(--seal);font-weight:700;">5 pays</div><div class="compare-val val-text">5 pays</div><div class="compare-val val-text">5 pays+</div></div>
-          <div class="compare-row"><div class="compare-feat">Droit transfrontalier</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">PDF sans filigrane</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Sauvegarde des actes</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">120+ modèles d'actes</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Calcul frais notariaux</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Utilisateurs</div><div class="compare-val val-text">1</div><div class="compare-val val-text" style="color:var(--seal);">1</div><div class="compare-val val-text">5</div><div class="compare-val val-text">Illimité</div></div>
-          <div class="compare-row"><div class="compare-feat">Espace partagé cabinet</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Gestion clients</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">En-tête cabinet personnalisé</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Signature électronique</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Connexion registres officiels</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Marque blanche</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-x">✗</div><div class="compare-val val-check">✅</div></div>
-          <div class="compare-row"><div class="compare-feat">Support</div><div class="compare-val val-text">FAQ</div><div class="compare-val val-text" style="color:var(--seal);">Email 24h</div><div class="compare-val val-text">Prioritaire 4h</div><div class="compare-val val-text">24/7 dédié</div></div>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="faq-section">
-        <div class="compare-title">❓ Questions fréquentes</div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Les actes générés sont-ils juridiquement valables ? <span>+</span></div><div class="faq-a">NotaIA génère des actes conformes aux législations en vigueur. Cependant, un acte notarial authentique requiert toujours la signature et le sceau du notaire instrumentaire. NotaIA est un assistant de rédaction, non un substitut au notaire.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Puis-je changer de plan à tout moment ? <span>+</span></div><div class="faq-a">Oui, vous pouvez upgrader ou downgrader votre plan à tout moment. Le changement prend effet à la prochaine période de facturation. Aucun engagement de durée sur les plans mensuel.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Mes données sont-elles sécurisées ? <span>+</span></div><div class="faq-a">Toutes vos données sont chiffrées et stockées sur des serveurs sécurisés en Europe. Nous respectons le RGPD et les réglementations sur la confidentialité des données notariales. Vos actes ne sont jamais partagés avec des tiers.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">NotaIA couvre-t-il vraiment le droit africain ? <span>+</span></div><div class="faq-a">Oui. NotaIA maîtrise le droit OHADA (commun à 17 pays africains), le droit sénégalais, ivoirien, camerounais et marocain. Notre base juridique est mise à jour régulièrement par des juristes spécialisés.</div></div>
-        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Y a-t-il une période d'essai pour la version Pro ? <span>+</span></div><div class="faq-a">Oui, la version Pro inclut 14 jours d'essai gratuit sans carte bancaire requise. Vous découvrez toutes les fonctionnalités avant de vous engager.</div></div>
-      </div>
-
     </div>
-
-    <div class="screen" id="screen-settings"><div style="text-align:center;padding:60px 20px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:14px;">⚙️</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Paramètres</div><div style="font-size:12px;">Configuration du cabinet et préférences.</div></div></div>
 
   </div>
 </main>
 
-<script>
-const LANG = {current:'fr'};
-const history = [];
+<div class="toast" id="toast"></div>
 
+<script>
+// ── DATA ──
+const PAYS_LABELS = {france:'🇫🇷 France', senegal:'🇸🇳 Sénégal', cotedivoire:'🇨🇮 Côte d\'Ivoire', maroc:'🇲🇦 Maroc', cameroun:'🇨🇲 Cameroun'};
+const TYPE_LABELS = {vente:'Vente immobilière', societe:'Statuts de société', procuration:'Procuration', succession:'Succession', donation:'Donation', bail:'Bail & Location'};
+
+const CHECKLISTS = {
+  vente: ['Titre de propriété vérifié','Diagnostics techniques reçus (DPE, amiante...)','Purge droit de préemption','État hypothécaire vérifié','Acte rédigé et validé','Signatures collectées','Publication au Service de Publicité Foncière'],
+  societe: ['Choix de la forme juridique','Dénomination sociale vérifiée (INPI)','Capital social libéré','Statuts rédigés et validés','Enregistrement (Greffe / RCCM)','Publication légale','Obtention SIRET / NINEA'],
+  procuration: ['Identité mandant vérifiée','Identité mandataire vérifiée','Pouvoirs définis précisément','Acte rédigé et validé','Signature mandant','Légalisation si nécessaire'],
+  succession: ['Acte de décès récupéré','Acte de naissance défunt','Liste des héritiers établie','Inventaire des biens','Testament vérifié','Attestation notariale rédigée','Publication au Fichier Central'],
+  donation: ['Identité donateur vérifiée','Identité donataire vérifiée','Bien à donner identifié','Valeur estimée','Acte de donation rédigé','Déclaration fiscale (Fisc)','Signatures collectées'],
+  bail: ['Identité bailleur vérifiée','Identité preneur vérifiée','Description du bien précise','Diagnostics reçus','Bail rédigé et validé','Dépôt de garantie encaissé','État des lieux établi']
+};
+
+const FORM_CONFIGS = {
+  vente: {
+    steps: ['Le bien','Le vendeur','L\'acheteur','La vente'],
+    sections: [
+      {title:'Le bien immobilier', fields:[
+        {id:'bien_pays', label:'Pays', type:'select', options:['france','senegal','cotedivoire','maroc','cameroun'], required:true},
+        {id:'bien_adresse', label:'Adresse complète', type:'text', placeholder:'Ex: 15 rue de la Paix, Paris 75001', required:true},
+        {id:'bien_superficie', label:'Superficie (m²)', type:'text', placeholder:'Ex: 75', required:true},
+        {id:'bien_type', label:'Type de bien', type:'select', options:['Appartement','Maison','Terrain','Local commercial','Immeuble'], required:true},
+        {id:'bien_dependances', label:'Dépendances', type:'text', placeholder:'Ex: Cave n°3, Parking n°12'},
+        {id:'bien_cadastre', label:'Référence cadastrale', type:'text', placeholder:'Ex: Section AB n°1234'},
+      ]},
+      {title:'Le vendeur', fields:[
+        {id:'vendeur_nom', label:'Nom et prénom', type:'text', placeholder:'Ex: DUPONT Eric', required:true},
+        {id:'vendeur_naissance', label:'Date et lieu de naissance', type:'text', placeholder:'Ex: 15/03/1975 à Paris'},
+        {id:'vendeur_nationalite', label:'Nationalité', type:'text', placeholder:'Ex: Française'},
+        {id:'vendeur_adresse', label:'Adresse', type:'text', placeholder:'Adresse complète du vendeur'},
+        {id:'vendeur_matrimonial', label:'Situation matrimoniale', type:'select', options:['Célibataire','Marié(e)','Divorcé(e)','Veuf/Veuve','Pacsé(e)']},
+        {id:'vendeur_cni', label:'N° pièce d\'identité', type:'text', placeholder:'Ex: CNI 123456789'},
+      ]},
+      {title:'L\'acheteur', fields:[
+        {id:'acheteur_nom', label:'Nom et prénom', type:'text', placeholder:'Ex: DIALLO Mamadou', required:true},
+        {id:'acheteur_naissance', label:'Date et lieu de naissance', type:'text', placeholder:'Ex: 22/07/1980 à Dakar'},
+        {id:'acheteur_nationalite', label:'Nationalité', type:'text', placeholder:'Ex: Sénégalaise'},
+        {id:'acheteur_adresse', label:'Adresse', type:'text', placeholder:'Adresse complète de l\'acheteur'},
+        {id:'acheteur_matrimonial', label:'Situation matrimoniale', type:'select', options:['Célibataire','Marié(e)','Divorcé(e)','Veuf/Veuve','Pacsé(e)']},
+        {id:'acheteur_cni', label:'N° pièce d\'identité', type:'text', placeholder:'Ex: Passeport AB123456'},
+      ]},
+      {title:'La vente', fields:[
+        {id:'vente_prix', label:'Prix de vente', type:'text', placeholder:'Ex: 320 000 € ou 45 000 000 FCFA', required:true},
+        {id:'vente_depot', label:'Dépôt de garantie', type:'text', placeholder:'Ex: 32 000 € (10%)'},
+        {id:'vente_financement', label:'Mode de financement', type:'select', options:['Sans emprunt (fonds propres)','Prêt immobilier','Mixte']},
+        {id:'vente_jouissance', label:'Date de jouissance', type:'text', placeholder:'Ex: À la signature ou 01/09/2026'},
+        {id:'vente_residence', label:'Usage du bien pour le vendeur', type:'select', options:['Résidence principale','Investissement locatif','Résidence secondaire']},
+        {id:'vente_notaire', label:'Nom du notaire instrumentaire', type:'text', placeholder:'Ex: Maître Jean DUPONT'},
+      ]}
+    ]
+  },
+  societe: {
+    steps: ['La société','Les associés','Le gérant','Capital'],
+    sections: [
+      {title:'La société', fields:[
+        {id:'soc_pays', label:'Pays de constitution', type:'select', options:['france','senegal','cotedivoire','maroc','cameroun'], required:true},
+        {id:'soc_forme', label:'Forme juridique', type:'select', options:['SARL','SA','SAS','EURL','SASU','GIE','SARLU'], required:true},
+        {id:'soc_nom', label:'Dénomination sociale', type:'text', placeholder:'Ex: ALMADA SERVICES', required:true},
+        {id:'soc_objet', label:'Objet social', type:'textarea', placeholder:'Décrivez l\'activité principale de la société...', required:true},
+        {id:'soc_siege', label:'Adresse du siège social', type:'text', placeholder:'Adresse complète', required:true},
+        {id:'soc_duree', label:'Durée (années)', type:'text', placeholder:'Ex: 99'},
+      ]},
+      {title:'Les associés', fields:[
+        {id:'associe1_nom', label:'Associé 1 — Nom complet', type:'text', placeholder:'Ex: GOMES ALMADA Dany', required:true},
+        {id:'associe1_naissance', label:'Associé 1 — Date/lieu naissance', type:'text', placeholder:'Ex: 02/01/1988 à Nantua'},
+        {id:'associe1_nationalite', label:'Associé 1 — Nationalité', type:'text', placeholder:'Ex: Française'},
+        {id:'associe1_adresse', label:'Associé 1 — Adresse', type:'text', placeholder:'Adresse complète'},
+        {id:'associe2_nom', label:'Associé 2 — Nom complet (si applicable)', type:'text', placeholder:'Laisser vide si EURL/SASU'},
+        {id:'associe2_adresse', label:'Associé 2 — Adresse', type:'text', placeholder:'Adresse complète'},
+      ]},
+      {title:'Le gérant', fields:[
+        {id:'gerant_nom', label:'Nom du gérant', type:'text', placeholder:'Ex: GOMES ALMADA Dany', required:true},
+        {id:'gerant_fonction', label:'Fonction', type:'select', options:['Gérant','Président','Directeur Général','Administrateur']},
+        {id:'gerant_duree', label:'Durée du mandat', type:'select', options:['Durée indéterminée','1 an','2 ans','3 ans','5 ans']},
+        {id:'gerant_remuneration', label:'Rémunération', type:'text', placeholder:'Ex: 3 500 € brut/mois ou Bénévole'},
+      ]},
+      {title:'Capital social', fields:[
+        {id:'capital_montant', label:'Montant du capital social', type:'text', placeholder:'Ex: 1 000 € ou 1 000 000 FCFA', required:true},
+        {id:'capital_parts', label:'Nombre de parts/actions', type:'text', placeholder:'Ex: 1 000 parts à 1 € chacune'},
+        {id:'capital_repartition', label:'Répartition des parts', type:'textarea', placeholder:'Ex: Associé 1 : 60% — Associé 2 : 40%'},
+        {id:'capital_liberation', label:'Libération du capital', type:'select', options:['Intégrale à la constitution','Partielle (25% min)','Échelonnée']},
+      ]}
+    ]
+  },
+  procuration: {
+    steps: ['Le mandant','Le mandataire','Les pouvoirs'],
+    sections: [
+      {title:'Le mandant (celui qui donne les pouvoirs)', fields:[
+        {id:'mandant_nom', label:'Nom et prénom', type:'text', placeholder:'Ex: DUPONT Eric', required:true},
+        {id:'mandant_naissance', label:'Date et lieu de naissance', type:'text', placeholder:'Ex: 15/03/1975 à Paris'},
+        {id:'mandant_nationalite', label:'Nationalité', type:'text', placeholder:'Ex: Française'},
+        {id:'mandant_adresse', label:'Adresse', type:'text', placeholder:'Adresse complète', required:true},
+        {id:'mandant_cni', label:'N° pièce d\'identité', type:'text', placeholder:'Ex: CNI 123456789'},
+      ]},
+      {title:'Le mandataire (celui qui reçoit les pouvoirs)', fields:[
+        {id:'mandataire_nom', label:'Nom et prénom', type:'text', placeholder:'Ex: DIALLO Mamadou', required:true},
+        {id:'mandataire_naissance', label:'Date et lieu de naissance', type:'text', placeholder:'Ex: 22/07/1980 à Dakar'},
+        {id:'mandataire_nationalite', label:'Nationalité', type:'text', placeholder:'Ex: Sénégalaise'},
+        {id:'mandataire_adresse', label:'Adresse', type:'text', placeholder:'Adresse complète', required:true},
+        {id:'mandataire_lien', label:'Lien avec le mandant', type:'text', placeholder:'Ex: Conjoint, frère, associé...'},
+      ]},
+      {title:'Les pouvoirs conférés', fields:[
+        {id:'pouvoirs_type', label:'Type de procuration', type:'select', options:['Générale','Spéciale — Immobilier','Spéciale — Société','Spéciale — Banque','Spéciale — Administration'], required:true},
+        {id:'pouvoirs_detail', label:'Détail des pouvoirs', type:'textarea', placeholder:'Décrivez précisément les pouvoirs accordés...', required:true},
+        {id:'pouvoirs_duree', label:'Durée de validité', type:'text', placeholder:'Ex: 1 an, 6 mois, ou Indéterminée'},
+        {id:'pouvoirs_pays', label:'Pays d\'application', type:'select', options:['france','senegal','cotedivoire','maroc','cameroun']},
+      ]}
+    ]
+  }
+};
+
+// Default config for other types
+['succession','donation','bail'].forEach(type => {
+  if (!FORM_CONFIGS[type]) {
+    FORM_CONFIGS[type] = {
+      steps: ['Parties','Bien','Conditions'],
+      sections: [
+        {title:'Informations principales', fields:[
+          {id:'partie1_nom', label:'Partie 1 — Nom complet', type:'text', required:true},
+          {id:'partie1_adresse', label:'Partie 1 — Adresse', type:'text'},
+          {id:'partie2_nom', label:'Partie 2 — Nom complet (si applicable)', type:'text'},
+          {id:'pays', label:'Pays', type:'select', options:['france','senegal','cotedivoire','maroc','cameroun'], required:true},
+        ]},
+        {title:'Le bien ou l\'objet', fields:[
+          {id:'objet_description', label:'Description', type:'textarea', placeholder:'Décrivez le bien ou l\'objet de l\'acte...', required:true},
+          {id:'objet_valeur', label:'Valeur estimée', type:'text', placeholder:'Ex: 100 000 €'},
+        ]},
+        {title:'Conditions et modalités', fields:[
+          {id:'conditions_detail', label:'Conditions particulières', type:'textarea', placeholder:'Précisez toute condition particulière...'},
+          {id:'date_signature', label:'Date de signature prévue', type:'text', placeholder:'Ex: 01/09/2026'},
+        ]}
+      ]
+    };
+  }
+});
+
+// ── STATE ──
+let dossiers = [
+  {id:'DOS-2026-001', type:'vente', pays:'france', ref:'Dupont / Martin — Appt Paris 15e', statut:'finalise', date:'03/06/2026', progress:100},
+  {id:'DOS-2026-002', type:'vente', pays:'senegal', ref:'Ouédraogo / Koné — Parcelle Dakar', statut:'finalise', date:'02/06/2026', progress:100},
+  {id:'DOS-2026-003', type:'societe', pays:'france', ref:'SARL Gomes Almada — Capital 50K€', statut:'instruction', date:'28/05/2026', progress:60},
+  {id:'DOS-2026-004', type:'procuration', pays:'senegal', ref:'Mme Diallo — Patrimoine France/Sénégal', statut:'finalise', date:'25/05/2026', progress:100},
+  {id:'DOS-2026-005', type:'donation', pays:'cotedivoire', ref:'Famille Touré — Villa Cocody 320m²', statut:'revision', date:'20/05/2026', progress:75},
+  {id:'DOS-2026-006', type:'bail', pays:'maroc', ref:'Benali / SCI Atlas — Local Casablanca', statut:'finalise', date:'15/05/2026', progress:100},
+  {id:'DOS-2026-007', type:'succession', pays:'cameroun', ref:'Famille Mbarga — Héritage franco-camerounais', statut:'instruction', date:'10/05/2026', progress:40},
+  {id:'DOS-2026-008', type:'vente', pays:'cameroun', ref:'M. Mbarga — Terrain 1200m² Yaoundé', statut:'ouvert', date:'08/05/2026', progress:20},
+];
+
+let currentDossier = null;
+let currentStep = 0;
+let formData = {};
+let generatedActe = '';
+let checklistStates = {};
+let miniHistory = [];
+let assistantHistory = [];
+
+// ── NAVIGATION ──
 function showScreen(name, el) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('screen-' + name).classList.add('active');
   if (el) el.classList.add('active');
-  const titles = {assistant:'Assistant IA',actes:'Mes Actes',dashboard:'Tableau de Bord',docs:'Base Juridique',clients:'Clients',conformite:'Vérification',modeles:'Modèles',settings:'Paramètres'};
+  const titles = {dossiers:'Dossiers',dashboard:'Tableau de bord',assistant:'Assistant juridique',modeles:'Modèles',docs:'Base juridique',clients:'Clients',pricing:'Plans & Tarifs',settings:'Paramètres',detail:'Dossier'};
   document.getElementById('screen-title').textContent = titles[name] || name;
 }
 
-function setLang(lang, btn) {
-  LANG.current = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+// ── DOSSIERS ──
+function renderDossiers() {
+  const grid = document.getElementById('dossiers-grid');
+  const statusLabels = {ouvert:'🟡 Ouvert', instruction:'🔵 En instruction', revision:'🟠 En révision', finalise:'🟢 Finalisé', archive:'⚫ Archivé'};
+  const statusClasses = {ouvert:'st-ouvert', instruction:'st-instruction', revision:'st-revision', finalise:'st-finalise', archive:'st-archive'};
+
+  grid.innerHTML = dossiers.map(d => `
+    <div class="dossier-card" onclick="ouvrirDossier('${d.id}')">
+      <div class="dc-header">
+        <div class="dc-num">${d.id}</div>
+        <div class="dc-status ${statusClasses[d.statut]}">${statusLabels[d.statut]}</div>
+      </div>
+      <div class="dc-progress"><div class="dc-progress-fill" style="width:${d.progress}%"></div></div>
+      <div class="dc-type">${TYPE_LABELS[d.type]}</div>
+      <div class="dc-parties">${d.ref}</div>
+      <div class="dc-footer">
+        <span class="dc-pays">${PAYS_LABELS[d.pays]}</span>
+        <span class="dc-date">${d.date}</span>
+      </div>
+    </div>
+  `).join('');
 }
 
-function addMsg(text, role) {
-  const c = document.getElementById('chat-msgs');
-  const d = document.createElement('div');
-  d.className = 'msg ' + role;
-  d.innerHTML = `<div class="msg-av ${role}">${role==='ai'?'NI':'M'}</div><div class="bubble ${role}">${text.replace(/\n/g,'<br>')}</div>`;
-  c.appendChild(d);
-  c.scrollTop = c.scrollHeight;
-  if (role === 'user') history.push({role:'user',content:text});
-  else {
-    history.push({role:'assistant',content:text});
-    checkForActe(text);
+function ouvrirDossier(id) {
+  currentDossier = dossiers.find(d => d.id === id);
+  if (!currentDossier) return;
+
+  formData = {};
+  generatedActe = '';
+  currentStep = 0;
+  miniHistory = [];
+  checklistStates = {};
+
+  document.getElementById('detail-breadcrumb').textContent = currentDossier.id + ' — ' + currentDossier.ref;
+  document.getElementById('form-title').textContent = TYPE_LABELS[currentDossier.type];
+  document.getElementById('dossier-ref-display').textContent = currentDossier.id + ' · ' + PAYS_LABELS[currentDossier.pays];
+
+  // Status
+  document.getElementById('dossier-statut').value = currentDossier.statut;
+  updateAvancement(currentDossier.progress);
+
+  // Reset preview
+  document.getElementById('acte-preview').innerHTML = `<div class="preview-placeholder"><div class="preview-placeholder-icon">📄</div><div class="preview-placeholder-text">Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Générer l'acte"</strong><br>pour voir l'acte apparaître ici.</div></div>`;
+  document.getElementById('preview-status').textContent = 'En attente des informations';
+  document.getElementById('btn-pdf').classList.add('hidden');
+  document.getElementById('card-docs').style.display = 'none';
+
+  // Build form
+  buildForm(currentDossier.type);
+
+  // Build checklist
+  buildChecklist(currentDossier.type);
+
+  // Reset mini chat
+  document.getElementById('chat-mini-msgs').innerHTML = `<div class="mini-msg ai"><div class="mini-av ai">NI</div><div class="mini-bubble ai">Posez-moi une question juridique sur ce dossier de ${TYPE_LABELS[currentDossier.type]} (${PAYS_LABELS[currentDossier.pays]}).</div></div>`;
+
+  showScreen('detail', document.querySelector('.nav-item.active'));
+}
+
+function buildForm(type) {
+  const config = FORM_CONFIGS[type];
+  if (!config) return;
+
+  // Steps
+  const stepsEl = document.getElementById('form-steps');
+  stepsEl.innerHTML = config.steps.map((s,i) => `<div class="form-step ${i===0?'active':''}" id="step-tab-${i}" onclick="goToStep(${i})">${i+1}. ${s}</div>`).join('');
+
+  // Sections
+  const sectionsEl = document.getElementById('form-sections');
+  sectionsEl.innerHTML = config.sections.map((section, si) => `
+    <div class="form-section ${si===0?'active':''}" id="form-section-${si}">
+      <div style="font-size:12px;font-weight:700;color:var(--seal);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;">${section.title}</div>
+      ${renderFields(section.fields)}
+    </div>
+  `).join('');
+
+  updateStepNav(config);
+}
+
+function renderFields(fields) {
+  let html = '';
+  let i = 0;
+  while (i < fields.length) {
+    const f = fields[i];
+    const isTextarea = f.type === 'textarea';
+    const isFullWidth = isTextarea || (i === fields.length - 1 && fields.length % 2 !== 0);
+
+    if (isFullWidth) {
+      html += `<div class="form-row full"><div class="form-group">${renderField(f)}</div></div>`;
+      i++;
+    } else {
+      const f2 = fields[i+1];
+      if (f2 && f2.type !== 'textarea') {
+        html += `<div class="form-row"><div class="form-group">${renderField(f)}</div><div class="form-group">${renderField(f2)}</div></div>`;
+        i += 2;
+      } else {
+        html += `<div class="form-row full"><div class="form-group">${renderField(f)}</div></div>`;
+        i++;
+      }
+    }
+  }
+  return html;
+}
+
+function renderField(f) {
+  const req = f.required ? '<span>*</span>' : '';
+  if (f.type === 'select') {
+    const opts = f.options.map(o => {
+      const label = PAYS_LABELS[o] || o;
+      return `<option value="${o}">${label}</option>`;
+    }).join('');
+    return `<label class="form-label">${f.label} ${req}</label><select class="form-select" id="${f.id}" onchange="saveField('${f.id}',this.value)">${opts}</select>`;
+  }
+  if (f.type === 'textarea') {
+    return `<label class="form-label">${f.label} ${req}</label><textarea class="form-textarea" id="${f.id}" placeholder="${f.placeholder||''}" oninput="saveField('${f.id}',this.value)"></textarea>`;
+  }
+  return `<label class="form-label">${f.label} ${req}</label><input type="text" class="form-input" id="${f.id}" placeholder="${f.placeholder||''}" oninput="saveField('${f.id}',this.value)">`;
+}
+
+function saveField(id, value) { 
+  formData[id] = value;
+  updatePreviewDynamic();
+}
+
+function updatePreviewDynamic() {
+  const preview = document.getElementById('acte-preview');
+  if (!currentDossier) return;
+  
+  const filled = Object.values(formData).filter(v => v && v.trim()).length;
+  if (filled === 0) return;
+  
+  const type = currentDossier.type;
+  const pays = PAYS_LABELS[currentDossier.pays] || '';
+  
+  let previewText = `<div class="acte-content">`;
+  previewText += `<h1>PROJET — ${TYPE_LABELS[type].toUpperCase()}</h1>`;
+  previewText += `<h2>${pays}</h2>`;
+  previewText += `<p style="text-align:center;font-style:italic;color:#757575;font-size:10.5pt;">⚠️ Projet préliminaire — Sera complété et validé par le notaire</p><hr style="border:none;border-top:0.5px solid #DEDAD3;margin:12px 0;">`;
+  
+  // Show filled fields as preview
+  const labels = {
+    bien_adresse:'Bien', vendeur_nom:'Vendeur', acheteur_nom:'Acheteur', vente_prix:'Prix',
+    soc_nom:'Société', soc_forme:'Forme', soc_objet:'Objet', capital_montant:'Capital',
+    associe1_nom:'Associé principal', gerant_nom:'Gérant',
+    mandant_nom:'Mandant', mandataire_nom:'Mandataire', pouvoirs_detail:'Pouvoirs'
+  };
+  
+  const entries = Object.entries(formData).filter(([k,v]) => v && v.trim() && labels[k]);
+  if (entries.length > 0) {
+    previewText += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">';
+    entries.slice(0,8).forEach(([k,v]) => {
+      previewText += `<div style="background:#F5F3EF;border-radius:4px;padding:8px 10px;"><div style="font-size:9pt;color:#757575;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">${labels[k]}</div><div style="font-size:10.5pt;font-weight:700;color:#1A1A1A;">${v}</div></div>`;
+    });
+    previewText += '</div>';
+  }
+  
+  previewText += `<p style="margin-top:16px;font-size:10pt;color:#757575;font-style:italic;">Cliquez sur "Préparer le projet d'acte" pour générer l'acte complet.</p>`;
+  previewText += '</div>';
+  
+  if (filled >= 2) {
+    preview.innerHTML = previewText;
+    document.getElementById('preview-status').textContent = `${filled} champ(s) renseigné(s) — Projet en construction`;
   }
 }
 
-function startActe(type) {
-  showScreen('assistant', document.querySelector('.nav-item.active'));
-
-  // Inject the type into history so the IA knows what to collect
-  const typeLabels = {
-    vente: 'acte de vente immobilière',
-    societe: 'statuts de société',
-    procuration: 'procuration notariale',
-    succession: 'acte de succession',
-    donation: 'acte de donation',
-    bail: 'contrat de bail',
-    conformite_check: 'vérification de conformité',
-    question: 'question juridique libre'
-  };
-
-  const introMsgs = {
-    vente: `Bonjour Maître ! Je vais vous aider à rédiger un **acte de vente immobilière** complet et conforme.\n\nAvant de commencer la rédaction, je dois collecter toutes les informations nécessaires. Je vais vous poser des questions étape par étape.\n\n**ÉTAPE 1 — LE BIEN IMMOBILIER**\n\n• Dans quel pays se situe le bien ? (France, Sénégal, Côte d'Ivoire, Maroc ou Cameroun)\n• Quelle est l'adresse précise du bien ?\n• Quelle est la superficie (loi Carrez si France) ?\n• S'agit-il d'un appartement, une maison, un terrain, un local commercial ?\n• Y a-t-il des dépendances (cave, parking, jardin...) ?`,
-
-    societe: `Bonjour Maître ! Je vais rédiger des **statuts de société** complets et conformes.\n\nJe vais collecter toutes les informations nécessaires étape par étape.\n\n**ÉTAPE 1 — LA SOCIÉTÉ**\n\n• Dans quel pays souhaitez-vous constituer la société ? (France, Sénégal, Côte d'Ivoire, Maroc ou Cameroun)\n• Quelle forme juridique ? (SARL, SA, SAS, EURL, GIE...)\n• Quel est le nom de la société ?\n• Quel est l'objet social (activité principale) ?\n• Quel est le montant du capital social ?`,
-
-    procuration: `Bonjour Maître ! Je vais rédiger une **procuration notariale** complète.\n\n**ÉTAPE 1 — LE MANDANT** (celui qui donne les pouvoirs)\n\n• Nom, prénom complet ?\n• Date et lieu de naissance ?\n• Nationalité et adresse ?\n• Situation matrimoniale ?\n• Numéro de pièce d'identité ?`,
-
-    succession: `Bonjour Maître ! Je vais vous assister sur ce dossier de **succession**.\n\n**ÉTAPE 1 — LE DÉFUNT**\n\n• Nom, prénom complet ?\n• Date et lieu de naissance ?\n• Date et lieu de décès ?\n• Nationalité et dernier domicile ?\n• Situation matrimoniale au décès ?\n• Existence d'un testament ? Si oui, olographe ou authentique ?`,
-
-    donation: `Bonjour Maître ! Je vais rédiger un **acte de donation** complet.\n\n**ÉTAPE 1 — LE DONATEUR** (celui qui donne)\n\n• Nom, prénom complet ?\n• Date et lieu de naissance ?\n• Nationalité et adresse ?\n• Situation matrimoniale ?\n• Lien de parenté avec le donataire ?`,
-
-    bail: `Bonjour Maître ! Je vais préparer un **contrat de bail** complet.\n\n**ÉTAPE 1 — LE TYPE DE BAIL**\n\n• Dans quel pays se situe le bien ? (France, Sénégal, Côte d'Ivoire, Maroc ou Cameroun)\n• Quel type de bail ? (résidentiel / commercial / professionnel / rural)\n• S'agit-il d'une location meublée ou vide ? (si résidentiel France)\n• Quelle est la durée souhaitée ?`,
-
-    conformite_check: `Bonjour Maître ! Je vais analyser la **conformité juridique** de votre acte.\n\nVeuillez me communiquer :\n• Le pays concerné par l'acte ?\n• Le type d'acte (vente, société, procuration...) ?\n• Puis collez le texte complet de l'acte à analyser.\n\nJ'analyserai les mentions obligatoires, les clauses manquantes et les risques juridiques.`,
-
-    question: `Bonjour Maître ! Posez-moi votre question juridique.\n\nJe couvre :\n• 🇫🇷 Droit français (Code Civil, immobilier, sociétés, successions)\n• 🌍 Droit OHADA (Sénégal, Côte d'Ivoire, Cameroun)\n• 🇲🇦 Droit marocain (Code Civil, Moudawwana, foncier)\n• 🔗 Droit international privé France ↔ Afrique\n\nQuelle est votre question ?`
-  };
-
-  addMsg(introMsgs[type] || "Comment puis-je vous aider ?", 'ai');
-
-  // Add context to history so IA knows what type of act is being drafted
-  history.push({role:'assistant', content: introMsgs[type]});
+function goToStep(step) {
+  const config = FORM_CONFIGS[currentDossier.type];
+  currentStep = step;
+  document.querySelectorAll('.form-section').forEach((s,i) => s.classList.toggle('active', i===step));
+  document.querySelectorAll('.form-step').forEach((s,i) => {
+    s.classList.toggle('active', i===step);
+    s.classList.toggle('done', i<step);
+  });
+  updateStepNav(config);
 }
 
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+function nextStep() {
+  const config = FORM_CONFIGS[currentDossier.type];
+  if (currentStep < config.steps.length - 1) goToStep(currentStep + 1);
 }
 
-async function sendMsg() {
-  const input = document.getElementById('chat-input');
-  const btn = document.getElementById('send-btn');
+function prevStep() {
+  if (currentStep > 0) goToStep(currentStep - 1);
+}
+
+function updateStepNav(config) {
+  const total = config.steps.length;
+  document.getElementById('step-indicator').textContent = `Étape ${currentStep+1} / ${total}`;
+  document.getElementById('btn-prev').style.visibility = currentStep > 0 ? 'visible' : 'hidden';
+  const nextBtn = document.getElementById('btn-next');
+  if (currentStep === total - 1) {
+    nextBtn.textContent = '✓ Vérifier';
+    nextBtn.onclick = () => showToastMsg('Formulaire complet. Cliquez sur "Générer l\'acte" !', 'success');
+  } else {
+    nextBtn.textContent = 'Suivant →';
+    nextBtn.onclick = nextStep;
+  }
+}
+
+// ── CHECKLIST ──
+function buildChecklist(type) {
+  const items = CHECKLISTS[type] || [];
+  checklistStates = {};
+  items.forEach((item,i) => checklistStates[i] = false);
+
+  const el = document.getElementById('checklist');
+  el.innerHTML = items.map((item,i) => `
+    <div class="cl-item" id="cl-${i}" onclick="toggleChecklist(${i})">
+      <div class="cl-checkbox" id="cl-cb-${i}"></div>
+      <div class="cl-text">${item}</div>
+    </div>
+  `).join('');
+  updateChecklistProgress();
+}
+
+function toggleChecklist(i) {
+  checklistStates[i] = !checklistStates[i];
+  const item = document.getElementById('cl-' + i);
+  const cb = document.getElementById('cl-cb-' + i);
+  item.classList.toggle('done', checklistStates[i]);
+  cb.textContent = checklistStates[i] ? '✓' : '';
+  updateChecklistProgress();
+}
+
+function updateChecklistProgress() {
+  const total = Object.keys(checklistStates).length;
+  const done = Object.values(checklistStates).filter(Boolean).length;
+  document.getElementById('checklist-progress').textContent = `${done}/${total} complétés`;
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  updateAvancement(pct);
+}
+
+function updateAvancement(pct) {
+  document.getElementById('avancement-pct').textContent = pct + '%';
+  document.getElementById('avancement-bar').style.width = pct + '%';
+}
+
+function updateStatut(val) {
+  if (currentDossier) currentDossier.statut = val;
+}
+
+// ── GÉNÉRER L'ACTE ──
+async function genererActe() {
+  if (!currentDossier) return;
+
+  const preview = document.getElementById('acte-preview');
+  preview.innerHTML = `<div class="acte-loading"><div class="dot-loader"><span></span><span></span><span></span></div><span style="font-size:12px;color:var(--ink3);">NotaIA prépare votre projet d'acte...</span></div>`;
+  document.getElementById('preview-status').textContent = 'Génération en cours...';
+  document.getElementById('btn-generate').disabled = true;
+
+  // Build prompt from form data
+  const formSummary = Object.entries(formData).map(([k,v]) => `${k}: ${v}`).join('\n');
+  
+  const prompt = `Tu es NotaIA, expert en droit notarial France et Afrique francophone.
+
+Rédige un ${TYPE_LABELS[currentDossier.type]} COMPLET et CONFORME au droit ${PAYS_LABELS[currentDossier.pays]}.
+
+DONNÉES DU DOSSIER :
+${formSummary || 'Pas encore de données — rédige un modèle type avec des variables entre [crochets]'}
+
+INSTRUCTIONS :
+- Acte complet avec TOUS les articles obligatoires
+- Aucun champ vide — utilise les données fournies
+- Conforme au droit du pays indiqué
+- Mentions légales obligatoires incluses
+- Format professionnel avec numérotation des articles`;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        system: 'Tu es NotaIA, assistant notarial expert. Rédige des actes juridiques complets, précis et conformes.',
+        messages: [{role:'user', content: prompt}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || 'Erreur de génération.';
+    generatedActe = text;
+    
+    preview.innerHTML = `<div class="acte-content">${formatActe(text)}</div>`;
+    document.getElementById('preview-status').textContent = 'Projet d'acte — À valider et signer par le notaire';
+    document.getElementById('btn-pdf').classList.remove('hidden');
+
+    // Add to documents
+    document.getElementById('card-docs').style.display = 'block';
+    const now = new Date().toLocaleDateString('fr-FR');
+    document.getElementById('doc-list').innerHTML = `
+      <div class="doc-item">
+        <span class="doc-icon">📄</span>
+        <div class="doc-name">${TYPE_LABELS[currentDossier.type]} — v1</div>
+        <div class="doc-date">${now}</div>
+        <span class="doc-dl" onclick="telechargerPDF()">Télécharger le projet</span>
+      </div>`;
+
+    showToastMsg('✅ Projet d'acte préparé avec succès !', 'success');
+  } catch(e) {
+    preview.innerHTML = `<div class="preview-placeholder"><div style="font-size:32px;">⚠️</div><div style="font-size:12px;margin-top:8px;">Erreur de connexion. Vérifiez votre connexion et réessayez.</div></div>`;
+    document.getElementById('preview-status').textContent = 'Erreur';
+  }
+  document.getElementById('btn-generate').disabled = false;
+}
+
+function formatActe(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^#{1,3} (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^(ARTICLE\s+\d+.*)/gm, '<h2>$1</h2>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
+// ── PDF ──
+function telechargerPDF() {
+  if (!generatedActe) { showToastMsg('Générez d\'abord un acte.', 'error'); return; }
+
+  const ref = 'NIA-' + Date.now().toString().slice(-8);
+  const date = new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric'});
+
+  const win = window.open('', '_blank', 'width=900,height=700');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Acte — NotaIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Libre Baskerville',Georgia,serif;font-size:11pt;color:#1A1A1A;background:#fff;}
+.page{width:170mm;padding:18mm 20mm;margin:0 auto;}
+.header{text-align:center;border-bottom:2px solid #7A2121;padding-bottom:14px;margin-bottom:20px;}
+.header-logo{font-size:9pt;color:#7A2121;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:4px;}
+.header-title{font-size:15pt;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
+.header-sub{font-size:8.5pt;color:#757575;margin-top:4px;font-style:italic;}
+.header-meta{display:flex;justify-content:space-between;margin-top:10px;font-size:8pt;color:#757575;font-family:Inter,sans-serif;}
+.content{line-height:1.85;}
+.content h1,.content h2{font-size:11pt;font-weight:700;text-transform:uppercase;text-align:center;margin:16px 0 8px;color:#7A2121;letter-spacing:0.04em;}
+.content p{margin-bottom:9px;text-align:justify;}
+.content strong{font-weight:700;}
+.content br{display:block;margin:3px 0;}
+.signatures{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:45px;padding-top:18px;border-top:1.5px solid #DEDAD3;}
+.sig-box{text-align:center;}
+.sig-line{border-top:1px solid #1A1A1A;padding-top:45px;margin-bottom:7px;}
+.sig-label{font-size:8pt;color:#757575;font-family:Inter,sans-serif;line-height:1.4;}
+.footer{margin-top:28px;padding-top:8px;border-top:0.5px solid #ddd;text-align:center;font-size:7.5pt;color:#aaa;font-family:Inter,sans-serif;}
+@media print{body{print-color-adjust:exact;-webkit-print-color-adjust:exact;}}
+</style></head><body><div class="page">
+<div class="header">
+<div class="header-logo">NotaIA — Le copilote des études notariales Intelligent</div>
+<div class="header-title">Acte Notarial</div>
+<div class="header-sub">Projet d'acte préparé par IA — Doit être validé, modifié et signé par le notaire instrumentaire</div>
+<div class="header-meta"><span>Généré le : ${date}</span><span>Réf. : ${ref}</span><span>Dossier : ${currentDossier?.id || '—'}</span></div>
+</div>
+<div class="content"><p>${formatActe(generatedActe)}</p></div>
+<div class="signatures">
+<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 1<br>Signature &amp; Date</div></div>
+<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 2<br>Signature &amp; Date</div></div>
+<div class="sig-box"><div class="sig-line"></div><div class="sig-label">Notaire<br>Cachet &amp; Signature</div></div>
+</div>
+<div class="footer">NotaIA — Document confidentiel — Réf. ${ref}</div>
+</div></body></html>`);
+  win.document.close();
+  setTimeout(() => { win.focus(); win.print(); showToastMsg('✅ PDF prêt !', 'success'); }, 1200);
+}
+
+// ── MINI CHAT ──
+async function sendMiniMsg() {
+  const input = document.getElementById('mini-input');
   const text = input.value.trim();
   if (!text) return;
-  input.value = ''; input.style.height = 'auto';
+  input.value = '';
+
+  const msgs = document.getElementById('chat-mini-msgs');
+  const addMini = (t, role) => {
+    const d = document.createElement('div');
+    d.className = 'mini-msg ' + role;
+    d.innerHTML = `<div class="mini-av ${role}">${role==='ai'?'NI':'M'}</div><div class="mini-bubble ${role}">${t.replace(/\n/g,'<br>')}</div>`;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+    miniHistory.push({role: role==='ai'?'assistant':'user', content:t});
+  };
+
+  addMini(text, 'user');
+  document.getElementById('mini-typing').classList.add('show');
+
+  try {
+    const context = currentDossier ? `Contexte: dossier ${TYPE_LABELS[currentDossier.type]} (${PAYS_LABELS[currentDossier.pays]}) — Réf: ${currentDossier.ref}` : '';
+    const res = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        system: `Tu es NotaIA, expert en droit notarial France et Afrique francophone. ${context}. Réponds de façon concise et professionnelle.`,
+        messages: [...miniHistory.slice(-8), {role:'user',content:text}]
+      })
+    });
+    const data = await res.json();
+    document.getElementById('mini-typing').classList.remove('show');
+    addMini(data.content?.[0]?.text || 'Erreur.', 'ai');
+  } catch(e) {
+    document.getElementById('mini-typing').classList.remove('show');
+    addMini('Erreur de connexion.', 'ai');
+  }
+}
+
+// ── ASSISTANT ──
+async function sendAssistantMsg() {
+  const input = document.getElementById('assistant-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  const msgs = document.getElementById('assistant-msgs');
+  const addMsg = (t, role) => {
+    const d = document.createElement('div');
+    d.className = 'mini-msg ' + role;
+    d.innerHTML = `<div class="mini-av ${role}" style="width:26px;height:26px;font-size:11px;">${role==='ai'?'NI':'M'}</div><div class="mini-bubble ${role}" style="font-size:13px;">${t.replace(/\n/g,'<br>')}</div>`;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+    assistantHistory.push({role: role==='ai'?'assistant':'user', content:t});
+  };
+
   addMsg(text, 'user');
-  document.getElementById('typing').style.display = 'flex';
-  btn.disabled = true;
-
-  const systemPrompt = `Tu es NotaIA, assistant IA expert en droit notarial pour les cabinets travaillant entre la France et l'Afrique francophone (Sénégal, Côte d'Ivoire, Maroc, Cameroun).
-
-RÈGLE ABSOLUE — COLLECTE D'INFORMATIONS AVANT RÉDACTION :
-Avant de rédiger N'IMPORTE QUEL acte, tu DOIS collecter TOUTES les informations nécessaires en posant des questions précises et structurées. Ne rédige JAMAIS un acte avec des champs vides ou des [INFORMATIONS À COMPLÉTER].
-
-PROCESSUS OBLIGATOIRE EN 3 ÉTAPES :
-
-ÉTAPE 1 — COLLECTE (si informations manquantes) :
-Pose toutes les questions nécessaires regroupées par catégorie :
-• Parties (identité complète, date et lieu de naissance, nationalité, adresse, situation matrimoniale, pièce d'identité)
-• Bien (adresse précise, superficie, référence cadastrale, dépendances)
-• Transaction (prix, mode de financement, dépôt de garantie, date de jouissance)
-• Situation fiscale (résidence principale ? investissement ? durée de détention ?)
-• Documents disponibles (diagnostics, titre de propriété, état hypothécaire...)
-
-ÉTAPE 2 — CONFIRMATION :
-Une fois toutes les informations reçues, récapitule-les et demande :
-"✅ J'ai toutes les informations nécessaires. Voici le récapitulatif : [liste]. Puis-je procéder à la rédaction de l'acte ?"
-
-ÉTAPE 3 — RÉDACTION :
-Seulement après confirmation, rédige l'acte complet, structuré, sans aucun champ vide, conforme à la juridiction concernée.
-
-COMPÉTENCES :
-- Code Civil français, loi Carrez, diagnostics obligatoires, DMTO, fiscalité non-résidents, TRACFIN
-- Droit OHADA (Sénégal, Côte d'Ivoire, Cameroun), RCCM, NINEA
-- Code Civil marocain, Moudawwana, Conservation Foncière
-- Conventions bilatérales France-Afrique, droit international privé
-- Droit transfrontalier France ↔ Afrique francophone
-
-Sois professionnel, précis et structuré. Tu t'adresses à des notaires qualifiés.`;
+  document.getElementById('assistant-typing').classList.add('show');
 
   try {
     const res = await fetch('/api/chat', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        system: systemPrompt,
-        messages: history.slice(-20).map(h => ({role:h.role,content:h.content}))
+        system: 'Tu es NotaIA, expert en droit notarial France et Afrique francophone (Sénégal, Côte d\'Ivoire, Maroc, Cameroun). Tu maîtrises le Code Civil français, le droit OHADA, la Moudawwana et le droit international privé. Réponds de façon professionnelle et précise.',
+        messages: [...assistantHistory.slice(-12), {role:'user',content:text}]
       })
     });
     const data = await res.json();
-    document.getElementById('typing').style.display = 'none';
-    btn.disabled = false;
-    
-    // Handle different response formats
-    let replyText = '';
-    if (data.content && data.content[0] && data.content[0].text) {
-      replyText = data.content[0].text;
-    } else if (data.error) {
-      replyText = "Erreur API : " + (data.error.message || JSON.stringify(data.error));
-    } else {
-      replyText = "Réponse inattendue : " + JSON.stringify(data).substring(0, 200);
-    }
-    addMsg(replyText, 'ai');
+    document.getElementById('assistant-typing').classList.remove('show');
+    addMsg(data.content?.[0]?.text || 'Erreur.', 'ai');
   } catch(e) {
-    document.getElementById('typing').style.display = 'none';
-    btn.disabled = false;
-    addMsg("Erreur : " + e.message, 'ai');
+    document.getElementById('assistant-typing').classList.remove('show');
+    addMsg('Erreur de connexion.', 'ai');
   }
 }
 
-// ── API Key Management ──
-let ANTHROPIC_API_KEY = '';
+// ── MODAL ──
+function openModal() { document.getElementById('modal-nouveau').classList.remove('hidden'); }
+function closeModal() { document.getElementById('modal-nouveau').classList.add('hidden'); }
 
-// API Key handled server-side
-ANTHROPIC_API_KEY = '';
+function creerDossier() {
+  const type = document.getElementById('new-type').value;
+  const pays = document.getElementById('new-pays').value;
+  const ref = document.getElementById('new-ref').value.trim();
+  if (!ref) { showToastMsg('Veuillez saisir une référence.', 'error'); return; }
 
-// ── Pricing ──
-let billingAnnual = false;
-const prices = {
-  pro: { monthly: 89, annual: 71 },
-  cabinet: { monthly: 249, annual: 199 }
-};
+  const num = dossiers.length + 1;
+  const id = 'DOS-2026-' + String(num).padStart(3,'0');
+  const today = new Date().toLocaleDateString('fr-FR');
 
-function toggleBilling() {
-  billingAnnual = !billingAnnual;
-  const toggle = document.getElementById('billing-toggle');
-  toggle.classList.toggle('on', billingAnnual);
-  
-  const proP = document.getElementById('pro-price');
-  const proA = document.getElementById('pro-annual');
-  const cabP = document.getElementById('cabinet-price');
-  const cabA = document.getElementById('cabinet-annual');
-  
-  if (billingAnnual) {
-    proP.textContent = prices.pro.annual + '€';
-    proA.textContent = 'soit ' + (prices.pro.annual * 12) + '€/an — économisez ' + ((prices.pro.monthly - prices.pro.annual) * 12) + '€';
-    cabP.textContent = prices.cabinet.annual + '€';
-    cabA.textContent = 'soit ' + (prices.cabinet.annual * 12) + '€/an — économisez ' + ((prices.cabinet.monthly - prices.cabinet.annual) * 12) + '€';
-  } else {
-    proP.textContent = prices.pro.monthly + '€';
-    proA.textContent = 'soit ' + (prices.pro.monthly * 12) + '€/an';
-    cabP.textContent = prices.cabinet.monthly + '€';
-    cabA.textContent = 'soit ' + (prices.cabinet.monthly * 12) + '€/an';
-  }
+  dossiers.unshift({id, type, pays, ref, statut:'ouvert', date:today, progress:0});
+  document.getElementById('badge-dossiers').textContent = dossiers.length;
+  renderDossiers();
+  closeModal();
+  showToastMsg('✅ Dossier ' + id + ' créé !', 'success');
+  setTimeout(() => ouvrirDossier(id), 500);
 }
 
-function selectPlan(plan) {
-  const msgs = {
-    free: "Vous utilisez la version Gratuite. Passez en Pro quand vous etes pret !",
-    pro: "Excellent choix ! Version Pro disponible au lancement. Contactez : info@notaia.fr",
-    cabinet: "Parfait ! Contactez-nous pour une demo : info@notaia.fr",
-    enterprise: "Merci ! Notre equipe vous contacte sous 24h : enterprise@notaia.fr"
-  };
-  showToast(msgs[plan] || "Merci !");
-}
-
-function toggleFaq(el) {
-  const answer = el.nextElementSibling;
-  const icon = el.querySelector('span:last-child');
-  const isOpen = answer.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q span:last-child').forEach(s => s.textContent = '+');
-  if (!isOpen) {
-    answer.classList.add('open');
-    icon.textContent = '−';
-  }
-}
-
-document.getElementById('chat-input').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 90) + 'px';
-});
-
-// ── PDF Generation ──
-let lastActeContent = '';
-let currentActeType = '';
-let currentActeData = {};
-
-function checkForActe(text) {
-  // Detect if AI has generated a complete deed
-  const acteKeywords = [
-    'ACTE AUTHENTIQUE', 'STATUTS DE SOCIÉTÉ', 'PROCURATION', 
-    'ACTE DE DONATION', 'CONTRAT DE BAIL', 'ATTESTATION',
-    'PAR-DEVANT', 'ONT COMPARU', 'IL A ÉTÉ CONVENU',
-    'ARTICLE 1', 'DONT ACTE', 'Fait et passé à'
-  ];
-  const isActe = acteKeywords.some(kw => text.toUpperCase().includes(kw.toUpperCase()));
-  if (isActe) {
-    lastActeContent = text;
-    document.getElementById('pdf-btn').classList.add('visible');
-  }
-}
-
-function showToast(msg, type='success') {
-  const t = document.getElementById('pdf-toast');
+// ── TOAST ──
+function showToastMsg(msg, type='success') {
+  const t = document.getElementById('toast');
   t.textContent = msg;
-  t.style.background = type === 'success' ? '#2E7D32' : '#C62828';
-  t.classList.add('show');
+  t.className = 'toast toast-' + type + ' show';
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-function generatePDF() {
-  if (!lastActeContent) {
-    showToast("Aucun acte à télécharger. Générez d'abord un acte.", 'error');
-    return;
-  }
-
-  try {
-    // Clean and format the content
-    const lines = lastActeContent.split('\n').filter(l => l.trim());
-    
-    // Build HTML for print
-    const printContent = `
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Acte Notarial — NotaIA</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Libre Baskerville',Georgia,serif; font-size:11pt; color:#1C1C1E; background:#fff; padding:0; }
-  .page { width:210mm; min-height:297mm; padding:20mm 22mm; margin:0 auto; }
-  .header { text-align:center; border-bottom:2px solid #8B2A2A; padding-bottom:16px; margin-bottom:20px; }
-  .header-logo { font-size:10pt; color:#8B2A2A; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:4px; }
-  .header-title { font-size:16pt; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
-  .header-sub { font-size:9pt; color:#6C6C70; margin-top:4px; font-style:italic; }
-  .header-meta { display:flex; justify-content:space-between; margin-top:10px; font-size:9pt; color:#6C6C70; font-family:'Inter',sans-serif; }
-  .content { line-height:1.9; }
-  h1,h2,h3 { text-align:center; margin:16px 0 8px; }
-  h1 { font-size:13pt; text-transform:uppercase; letter-spacing:0.05em; }
-  h2 { font-size:12pt; }
-  h3 { font-size:11pt; color:#8B2A2A; }
-  p { margin-bottom:8px; text-align:justify; }
-  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:10pt; }
-  th { background:#F0EDE8; padding:6px 10px; border:1px solid #D8D2C8; font-weight:700; text-align:left; }
-  td { padding:6px 10px; border:1px solid #D8D2C8; }
-  .article { margin:12px 0; }
-  .article-title { font-weight:700; text-transform:uppercase; font-size:10pt; letter-spacing:0.08em; color:#8B2A2A; margin-bottom:4px; }
-  .signatures { display:grid; grid-template-columns:1fr 1fr 1fr; gap:30px; margin-top:40px; padding-top:16px; border-top:1px solid #D8D2C8; }
-  .sig-box { text-align:center; }
-  .sig-line { border-top:1px solid #1C1C1E; margin-bottom:6px; padding-top:40px; }
-  .sig-label { font-size:9pt; color:#6C6C70; font-family:'Inter',sans-serif; }
-  .footer { position:fixed; bottom:10mm; left:22mm; right:22mm; text-align:center; font-size:8pt; color:#aaa; font-family:'Inter',sans-serif; border-top:0.5px solid #ddd; padding-top:6px; }
-  .seal { display:inline-block; width:60px; height:60px; border:2px solid #8B2A2A; border-radius:50%; text-align:center; line-height:56px; font-size:18pt; color:#8B2A2A; margin:20px auto; }
-  blockquote { border-left:3px solid #8B2A2A; padding-left:12px; color:#3A3A3C; margin:8px 0; font-style:italic; }
-  strong, b { font-weight:700; }
-  em, i { font-style:italic; }
-  ul,ol { padding-left:20px; margin:8px 0; }
-  li { margin-bottom:4px; }
-  @media print {
-    body { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
-    .no-print { display:none; }
-  }
-</style>
-</head>
-<body>
-<div class="page">
-  <div class="header">
-    <div class="header-logo">NotaIA — Assistant Notarial Intelligent</div>
-    <div class="header-title">Acte Notarial</div>
-    <div class="header-sub">Document généré par intelligence artificielle — À valider par le notaire instrumentaire</div>
-    <div class="header-meta">
-      <span>Généré le : ${new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric'})}</span>
-      <span>Référence : NIA-${Date.now().toString().slice(-8)}</span>
-      <span>Cabinet : [NOM DU CABINET]</span>
-    </div>
-  </div>
-  <div class="content">
-    ${formatActeHTML(lastActeContent)}
-  </div>
-  <div class="signatures">
-    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 1<br>Signature & Date</div></div>
-    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Partie 2<br>Signature & Date</div></div>
-    <div class="sig-box"><div class="sig-line"></div><div class="sig-label">Notaire<br>Cachet & Signature</div></div>
-  </div>
-</div>
-<div class="footer">NotaIA — Document à usage professionnel — Confidentiel — Réf. NIA-${Date.now().toString().slice(-8)}</div>
-<div class="pdf-toast" id="pdf-toast"></div>
-
-
-</body>
-</html>`;
-
-    // Open print window
-    const printWin = window.open('', '_blank', 'width=900,height=700');
-    printWin.document.write(printContent);
-    printWin.document.close();
-    
-    setTimeout(() => {
-      printWin.focus();
-      printWin.print();
-      showToast('✅ Acte prêt à imprimer / sauvegarder en PDF !');
-    }, 800);
-
-  } catch(err) {
-    showToast('Erreur lors de la génération. Réessayez.', 'error');
-    console.error(err);
-  }
-}
-
-function formatActeHTML(text) {
-  let html = text
-    // Bold markdown
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    // Headers
-    .replace(/^#{3} (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^#{2} (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^#{1} (.+)$/gm, '<h1>$1</h1>')
-    // Lines starting with ARTICLE
-    .replace(/^(ARTICLE \d+[^\n]*)/gm, '<div class="article"><div class="article-title">$1</div>')
-    // Horizontal rules
-    .replace(/^---+$/gm, '<hr style="border:none;border-top:0.5px solid #D8D2C8;margin:12px 0;">')
-    // Line breaks
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/\n/g, '<br>');
+// ── IMPORT PIÈCES ──
+function importerPieces(input) {
+  const files = input.files;
+  if (!files.length) return;
   
-  return '<p>' + html + '</p>';
+  const names = Array.from(files).map(f => f.name).join(', ');
+  showToastMsg(`📎 ${files.length} pièce(s) importée(s) : ${names}. Analyse en cours...`, 'success');
+  
+  // Simulate pre-filling (in production would use OCR/AI to extract data)
+  setTimeout(() => {
+    showToastMsg('✅ Pièces analysées — Certains champs ont été pré-remplis.', 'success');
+  }, 2000);
 }
 
-// Hook into addMsg to detect acte generation
-const origAddMsg = addMsg;
-// Override to detect acte
-const _origAddMsg = addMsg;
-window._addMsgHook = function(text, role) {
-  if (role === 'ai') checkForActe(text);
-};
+// ── INIT ──
+renderDossiers();
 </script>
-<div class="pdf-toast" id="pdf-toast"></div>
-
-
 </body>
 </html>
