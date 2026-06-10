@@ -169,12 +169,17 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:
 /* CHECKLIST */
 .checklist{display:flex;flex-direction:column;gap:6px;}
 .cl-item{display:flex;align-items:center;gap:9px;padding:7px 10px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bg2);cursor:pointer;transition:all 0.12s;}
-.cl-item:hover{border-color:var(--bg3);}
-.cl-item.done{background:var(--green-light);border-color:#B8D8B8;}
-.cl-item.pending{background:var(--orange-light);border-color:#F0C8A8;}
-.cl-item.blocked{background:#FEF0F0;border-color:#F0B8B8;}
+.cl-item:hover{border-color:var(--seal);}
+.cl-item.done{background:#EBF5EB;border-color:#9FCF9F;}
+.cl-item.waiting{background:#FFF8E1;border-color:#FFD54F;}
+.cl-item.missing{background:#FEEBEE;border-color:#EF9A9A;}
 .cl-item.done .cl-checkbox{background:var(--green);border-color:var(--green);color:#fff;}
-.cl-item.pending .cl-checkbox{background:#E65100;border-color:#E65100;color:#fff;}
+.cl-item.waiting .cl-checkbox{background:#F57F17;border-color:#F57F17;color:#fff;}
+.cl-item.missing .cl-checkbox{background:#C62828;border-color:#C62828;color:#fff;}
+.cl-status-tag{font-size:9px;padding:1px 6px;border-radius:8px;font-weight:700;margin-left:auto;flex-shrink:0;}
+.cl-item.done .cl-status-tag{background:#C8E6C9;color:#2E7D32;}
+.cl-item.waiting .cl-status-tag{background:#FFE082;color:#E65100;}
+.cl-item.missing .cl-status-tag{background:#FFCDD2;color:#C62828;}
 .cl-checkbox{width:16px;height:16px;border:1.5px solid var(--bg3);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all 0.12s;}
 .cl-item.done .cl-checkbox{background:var(--green);border-color:var(--green);color:#fff;}
 .cl-text{font-size:12px;color:var(--ink2);flex:1;}
@@ -481,7 +486,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:
                 <div class="preview-placeholder">
                   <div class="preview-placeholder-icon">📄</div>
                   <div class="preview-placeholder-text">
-                    Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Générer l'acte"</strong><br>pour voir l'acte apparaître ici.
+                    Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Préparer le projet d'acte"</strong><br>pour voir l'acte apparaître ici.
                   </div>
                 </div>
               </div>
@@ -630,8 +635,31 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);display:
     </div>
 
     <!-- ══ AUTRES ══ -->
-    <div class="screen" id="screen-modeles"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">📋</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">120+ Modèles d'actes</div><div style="font-size:12px;">Disponible dans la prochaine version.</div></div></div>
-    <div class="screen" id="screen-docs"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">📚</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Base juridique</div><div style="font-size:12px;">France · OHADA · Maroc — Bientôt disponible.</div></div></div>
+    <div class="screen" id="screen-modeles">
+      <div class="stats-bar">
+        <div class="stat-box"><div class="stat-label">Modèles disponibles</div><div class="stat-val">120+</div><div class="stat-sub">Tous pays couverts</div></div>
+        <div class="stat-box"><div class="stat-label">Mis à jour</div><div class="stat-val">juin 2026</div><div class="stat-sub">Droit en vigueur</div></div>
+        <div class="stat-box"><div class="stat-label">Langues</div><div class="stat-val">3</div><div class="stat-sub">FR · PT · EN</div></div>
+        <div class="stat-box"><div class="stat-label">Pays couverts</div><div class="stat-val">5</div><div class="stat-sub">France + Afrique</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        ${['🏠 Vente immobilière','🏢 Statuts SARL','✍️ Procuration générale','📜 Succession','🤝 Donation','🔑 Bail commercial','🏗️ Statuts SAS','📋 Bail résidentiel','⚖️ Attestation propriété'].map(m => `<div class="card" style="padding:16px;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--seal)'" onmouseout="this.style.borderColor='var(--bg3)'"><div style="font-size:20px;margin-bottom:8px;">${m.split(' ')[0]}</div><div style="font-size:13px;font-weight:700;color:var(--ink);">${m.split(' ').slice(1).join(' ')}</div><div style="font-size:11px;color:var(--ink3);margin-top:4px;">France · Afrique</div><div style="font-size:11px;color:var(--seal);margin-top:8px;font-weight:600;">Utiliser ce modèle →</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="screen" id="screen-docs">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        ${[
+          {flag:'🇫🇷',pays:'France',titre:'Code Civil & Notariat',desc:'Loi ventôse an XI, actes authentiques, responsabilité notariale',status:'À jour'},
+          {flag:'🇫🇷',pays:'France',titre:'Immobilier & Urbanisme',desc:'Loi Carrez, diagnostics, SRU, PLU, plus-values immobilières',status:'À jour'},
+          {flag:'⚖️',pays:'OHADA',titre:'Acte Uniforme Sociétés',desc:'SARL, SA, SAS, GIE — Sénégal, Côte d'Ivoire, Cameroun',status:'À jour'},
+          {flag:'🇸🇳',pays:'Sénégal',titre:'Droit foncier',desc:'Code domaine État, régimes fonciers, immatriculation',status:'À jour'},
+          {flag:'🇨🇮',pays:'Côte d'Ivoire',titre:'Code Foncier & Rural',desc:'Loi 98-750, droits coutumiers, certification foncière',status:'À jour'},
+          {flag:'🇲🇦',pays:'Maroc',titre:'Code Civil & Moudawwana',desc:'Obligations, successions, régimes matrimoniaux',status:'À jour'},
+          {flag:'🇨🇲',pays:'Cameroun',titre:'Droit foncier',desc:'Ordonnance 1974, titres fonciers, baux, expropriation',status:'Vérification'},
+          {flag:'🔗',pays:'Transfrontalier',titre:'Droit International Privé',desc:'Conventions France-Sénégal, France-Maroc, exequatur',status:'À jour'},
+        ].map(d => `<div class="card" style="padding:16px;"><div style="font-size:22px;margin-bottom:6px;">${d.flag}</div><div style="font-size:10px;font-weight:700;color:var(--seal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">${d.pays}</div><div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;">${d.titre}</div><div style="font-size:11px;color:var(--ink3);line-height:1.5;">${d.desc}</div><div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bg2);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:var(--ink3);">Juin 2026</span><span style="font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600;background:${d.status==='À jour'?'#E8F5E9':'#FFF3E0'};color:${d.status==='À jour'?'#2E7D32':'#E65100'};">${d.status}</span></div></div>`).join('')}
+      </div>
+    </div>
     <div class="screen" id="screen-clients"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">👥</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Gestion des clients</div><div style="font-size:12px;">Disponible dans la prochaine version.</div></div></div>
     <div class="screen" id="screen-settings"><div style="text-align:center;padding:60px;color:var(--ink3);"><div style="font-size:36px;margin-bottom:12px;">⚙️</div><div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;">Paramètres</div><div style="font-size:12px;">Configuration du cabinet.</div></div></div>
 
@@ -848,15 +876,17 @@ const FORM_CONFIGS = {
 });
 
 // ── STATE ──
+const STATUT_PROGRESS = {ouvert:15, instruction:45, revision:75, finalise:100, archive:100};
+
 let dossiers = [
   {id:'DOS-2026-001', type:'vente', pays:'france', ref:'Dupont / Martin — Appt Paris 15e', statut:'finalise', date:'03/06/2026', progress:100},
   {id:'DOS-2026-002', type:'vente', pays:'senegal', ref:'Ouédraogo / Koné — Parcelle Dakar', statut:'finalise', date:'02/06/2026', progress:100},
-  {id:'DOS-2026-003', type:'societe', pays:'france', ref:'SARL Gomes Almada — Capital 50K€', statut:'instruction', date:'28/05/2026', progress:60},
+  {id:'DOS-2026-003', type:'societe', pays:'france', ref:'SARL Gomes Almada — Capital 50K€', statut:'instruction', date:'28/05/2026', progress:45},
   {id:'DOS-2026-004', type:'procuration', pays:'senegal', ref:'Mme Diallo — Patrimoine France/Sénégal', statut:'finalise', date:'25/05/2026', progress:100},
   {id:'DOS-2026-005', type:'donation', pays:'cotedivoire', ref:'Famille Touré — Villa Cocody 320m²', statut:'revision', date:'20/05/2026', progress:75},
   {id:'DOS-2026-006', type:'bail', pays:'maroc', ref:'Benali / SCI Atlas — Local Casablanca', statut:'finalise', date:'15/05/2026', progress:100},
-  {id:'DOS-2026-007', type:'succession', pays:'cameroun', ref:'Famille Mbarga — Héritage franco-camerounais', statut:'instruction', date:'10/05/2026', progress:40},
-  {id:'DOS-2026-008', type:'vente', pays:'cameroun', ref:'M. Mbarga — Terrain 1200m² Yaoundé', statut:'ouvert', date:'08/05/2026', progress:20},
+  {id:'DOS-2026-007', type:'succession', pays:'cameroun', ref:'Famille Mbarga — Héritage franco-camerounais', statut:'instruction', date:'10/05/2026', progress:45},
+  {id:'DOS-2026-008', type:'vente', pays:'cameroun', ref:'M. Mbarga — Terrain 1200m² Yaoundé', statut:'ouvert', date:'08/05/2026', progress:15},
 ];
 
 let currentDossier = null;
@@ -919,7 +949,7 @@ function ouvrirDossier(id) {
   updateAvancement(currentDossier.progress);
 
   // Reset preview
-  document.getElementById('acte-preview').innerHTML = `<div class="preview-placeholder"><div class="preview-placeholder-icon">📄</div><div class="preview-placeholder-text">Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Générer l'acte"</strong><br>pour voir l'acte apparaître ici.</div></div>`;
+  document.getElementById('acte-preview').innerHTML = `<div class="preview-placeholder"><div class="preview-placeholder-icon">📄</div><div class="preview-placeholder-text">Remplissez le formulaire ci-dessus<br>et cliquez sur <strong>"Préparer le projet d'acte"</strong><br>pour voir l'acte apparaître ici.</div></div>`;
   document.getElementById('preview-status').textContent = 'En attente des informations';
   document.getElementById('btn-pdf').classList.add('hidden');
   document.getElementById('card-docs').style.display = 'none';
@@ -1033,7 +1063,7 @@ function updatePreviewDynamic() {
     previewText += '</div>';
   }
   
-  previewText += `<p style="margin-top:16px;font-size:10pt;color:#757575;font-style:italic;">Cliquez sur "Préparer le projet d'acte" pour générer l'acte complet.</p>`;
+  previewText += `<p style="margin-top:16px;font-size:10pt;color:#757575;font-style:italic;">Cliquez sur "Preparer le projet dacte" pour generer le projet complet.</p>`;
   previewText += '</div>';
   
   if (filled >= 2) {
@@ -1084,27 +1114,42 @@ function buildChecklist(type) {
 
   const el = document.getElementById('checklist');
   el.innerHTML = items.map((item,i) => `
-    <div class="cl-item" id="cl-${i}" onclick="toggleChecklist(${i})">
+    <div class="cl-item" id="cl-${i}" onclick="toggleChecklist(${i})" title="Cliquer pour changer le statut">
       <div class="cl-checkbox" id="cl-cb-${i}"></div>
       <div class="cl-text">${item}</div>
+      <span class="cl-status-tag" id="cl-tag-${i}"></span>
     </div>
   `).join('');
   updateChecklistProgress();
 }
 
 function toggleChecklist(i) {
-  checklistStates[i] = !checklistStates[i];
+  const states = ['none', 'waiting', 'done', 'missing'];
+  const current = checklistStates[i] || 'none';
+  const next = states[(states.indexOf(current) + 1) % states.length];
+  checklistStates[i] = next;
+  
   const item = document.getElementById('cl-' + i);
   const cb = document.getElementById('cl-cb-' + i);
-  item.classList.toggle('done', checklistStates[i]);
-  cb.textContent = checklistStates[i] ? '✓' : '';
+  const tag = document.getElementById('cl-tag-' + i);
+  
+  item.classList.remove('done', 'waiting', 'missing');
+  if (next !== 'none') item.classList.add(next);
+  
+  const icons = {none:'', waiting:'⏳', done:'✓', missing:'✗'};
+  const labels = {none:'', waiting:'En attente', done:'Vérifié', missing:'Manquant'};
+  cb.textContent = icons[next];
+  if (tag) tag.textContent = labels[next];
+  
   updateChecklistProgress();
 }
 
 function updateChecklistProgress() {
   const total = Object.keys(checklistStates).length;
-  const done = Object.values(checklistStates).filter(Boolean).length;
-  document.getElementById('checklist-progress').textContent = `${done}/${total} complétés`;
+  const done = Object.values(checklistStates).filter(v => v === 'done').length;
+  const waiting = Object.values(checklistStates).filter(v => v === 'waiting').length;
+  const missing = Object.values(checklistStates).filter(v => v === 'missing').length;
+  document.getElementById('checklist-progress').textContent = done + '/' + total + ' vérifiés';
   const pct = total > 0 ? Math.round(done/total*100) : 0;
   updateAvancement(pct);
 }
@@ -1115,7 +1160,12 @@ function updateAvancement(pct) {
 }
 
 function updateStatut(val) {
-  if (currentDossier) currentDossier.statut = val;
+  if (currentDossier) {
+    currentDossier.statut = val;
+    const pct = STATUT_PROGRESS[val] || 0;
+    currentDossier.progress = pct;
+    updateAvancement(pct);
+  }
 }
 
 // ── GÉNÉRER L'ACTE ──
