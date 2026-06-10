@@ -1158,7 +1158,7 @@ INSTRUCTIONS :
     generatedActe = text;
     
     preview.innerHTML = `<div class="acte-content">${formatActe(text)}</div>`;
-    document.getElementById('preview-status').textContent = 'Projet d'acte — À valider et signer par le notaire';
+    document.getElementById('preview-status').textContent = "Projet - À valider et signer par le notaire";
     document.getElementById('btn-pdf').classList.remove('hidden');
 
     // Add to documents
@@ -1172,7 +1172,7 @@ INSTRUCTIONS :
         <span class="doc-dl" onclick="telechargerPDF()">Télécharger le projet</span>
       </div>`;
 
-    showToastMsg('✅ Projet d'acte préparé avec succès !', 'success');
+    showToastMsg("Projet dacte préparé avec succès !", "success");;
   } catch(e) {
     preview.innerHTML = `<div class="preview-placeholder"><div style="font-size:32px;">⚠️</div><div style="font-size:12px;margin-top:8px;">Erreur de connexion. Vérifiez votre connexion et réessayez.</div></div>`;
     document.getElementById('preview-status').textContent = 'Erreur';
