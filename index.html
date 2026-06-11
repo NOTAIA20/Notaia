@@ -1413,4 +1413,167 @@ function importerPieces(input) {
 renderDossiers();
 </script>
 </body>
-</html>
+</html>// ── IMPORT PIÈCES — Extraction IA réelle ──
+async function importerPieces(input) {
+  const files = input.files;
+  if (!files.length) return;
+  const file = files[0];
+
+  const isImage = file.type.startsWith('image/');
+  const isPDF = file.type === 'application/pdf';
+
+  if (!isImage && !isPDF) {
+    showToastMsg('Format non supporté. Utilisez JPG, PNG ou PDF.', 'error');
+    return;
+  }
+
+  showToastMsg('Analyse de ' + file.name + ' en cours...', 'success');
+
+  try {
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    let content;
+    if (isPDF) {
+      // For PDF: use canvas to render first page as image
+      content = await extractFromPDF(base64, file);
+    } else {
+      content = [
+        { type: 'image', source: { type: 'base64', media_type: file.type, data: base64 } },
+        { type: 'text', text: getExtractionPrompt() }
+      ];
+    }
+
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system: 'Tu es un assistant notarial expert. Extrais les données du document. Reponds uniquement en JSON valide sans markdown.',
+        messages: [{ role: 'user', content: content }]
+      })
+    });
+
+    const data = await res.json();
+    if (data.error) {
+      showToastMsg('Erreur API : ' + (data.error.message || 'Inconnu'), 'error');
+      return;
+    }
+
+    const text = data.content?.[0]?.text || '';
+    let extracted = {};
+    try {
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (jsonMatch) extracted = JSON.parse(jsonMatch[0]);
+    } catch(e) { console.error('Parse error:', e, text); }
+
+    fillFormFromExtracted(extracted, file.name);
+
+  } catch(err) {
+    console.error('Import error:', err);
+    showToastMsg('Erreur lors de l analyse : ' + err.message, 'error');
+  }
+}
+
+function getExtractionPrompt() {
+  return 'Analyse ce document (passeport, CNI, titre de propriete, acte...) et extrais les informations. Reponds UNIQUEMENT en JSON: {"nom":"","prenom":"","date_naissance":"","lieu_naissance":"","nationalite":"","adresse":"","numero_piece":"","type_piece":"","adresse_bien":"","superficie":"","reference_cadastrale":"","valeur":"","nom_societe":"","objet_social":""}';
+}
+
+async function extractFromPDF(base64Data, file) {
+  // Convert PDF first page to image using canvas
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.onload = async () => {
+      try {
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        const pdfData = atob(base64Data);
+        const uint8Array = new Uint8Array(pdfData.length);
+        for (let i = 0; i < pdfData.length; i++) uint8Array[i] = pdfData.charCodeAt(i);
+        
+        const pdf = await pdfjsLib.getDocument({ data: uint8Array }).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 2.0 });
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+        
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        const imageData = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
+        
+        resolve([
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imageData } },
+          { type: 'text', text: getExtractionPrompt() }
+        ]);
+      } catch(e) {
+        console.error('PDF render error:', e);
+        // Fallback: send as text extraction request
+        resolve([{ type: 'text', text: 'Extrais les informations de ce document PDF et reponds en JSON: {"nom":"","prenom":"","date_naissance":"","lieu_naissance":"","nationalite":"","adresse":"","numero_piece":"","type_piece":""}' }]);
+      }
+    };
+    script.onerror = () => {
+      resolve([{ type: 'text', text: 'Extrais les informations et reponds en JSON: {"nom":"","prenom":"","date_naissance":"","nationalite":"","adresse":"","numero_piece":""}' }]);
+    };
+    document.head.appendChild(script);
+  });
+}
+
+function fillFormFromExtracted(extracted, filename) {
+  const mapping = {
+    vendeur_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    vendeur_naissance: [extracted.date_naissance, extracted.lieu_naissance ? 'a ' + extracted.lieu_naissance : ''].filter(Boolean).join(' '),
+    vendeur_nationalite: extracted.nationalite || '',
+    vendeur_adresse: extracted.adresse || '',
+    vendeur_cni: extracted.numero_piece || '',
+    acheteur_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    acheteur_naissance: [extracted.date_naissance, extracted.lieu_naissance ? 'a ' + extracted.lieu_naissance : ''].filter(Boolean).join(' '),
+    acheteur_nationalite: extracted.nationalite || '',
+    acheteur_adresse: extracted.adresse || '',
+    acheteur_cni: extracted.numero_piece || '',
+    mandant_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    mandant_adresse: extracted.adresse || '',
+    mandant_cni: extracted.numero_piece || '',
+    mandataire_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    mandataire_adresse: extracted.adresse || '',
+    associe1_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    associe1_adresse: extracted.adresse || '',
+    partie1_nom: [extracted.nom, extracted.prenom].filter(Boolean).join(' '),
+    bien_adresse: extracted.adresse_bien || '',
+    bien_superficie: extracted.superficie || '',
+    bien_cadastre: extracted.reference_cadastrale || '',
+    soc_nom: extracted.nom_societe || '',
+    soc_objet: extracted.objet_social || '',
+  };
+
+  let filled = 0;
+  Object.entries(mapping).forEach(([fieldId, value]) => {
+    if (value && value.trim()) {
+      const el = document.getElementById(fieldId);
+      if (el && !el.value) {
+        el.value = value.trim();
+        formData[fieldId] = value.trim();
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#EBF5EB';
+        setTimeout(() => { el.style.background = ''; }, 2500);
+        filled++;
+      }
+    }
+  });
+
+  if (filled > 0) {
+    showToastMsg('✅ ' + filled + ' champ(s) pre-rempli(s) depuis ' + (extracted.type_piece || filename), 'success');
+    updatePreviewDynamic();
+  } else {
+    showToastMsg('Document analyse - Remplissez manuellement les champs non reconnus.', 'error');
+    console.log('Extracted data:', extracted);
+  }
+}
+
+
